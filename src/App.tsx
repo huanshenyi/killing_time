@@ -1,11 +1,12 @@
-import './App.css'
+import { Button } from "antd";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      hello world
+      <Button type="primary">hello world</Button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
