@@ -1,0 +1,25 @@
+.app-header {
+  background-color: white !important;
+  border-bottom: 1px solid #e0e0e0;
+  position: relative;
+}
+.header {
+  background-color: white !important;
+  height: 60px;
+  line-height: 60px;
+  width: 88%;
+  margin: 0 auto;
+  width: 1230px;
+  display: flex;
+}
+
+.App-logo {
+  height: 60px;
+  width: 60px;
+}
+
+.title {
+  line-height: 64px !important;
+  display: inline;
+  color: #03a9f4;
+}
