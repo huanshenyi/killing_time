@@ -1,5 +1,7 @@
 import React from "react";
 
+import styles from "./HomePage.module.css";
+
 export const HomePage: React.FC = () => {
-  return <h1>home</h1>;
+  return <div className={styles["page-content"]}>home page</div>;
 };
