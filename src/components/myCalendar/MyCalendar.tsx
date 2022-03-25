@@ -1,13 +1,42 @@
-import React from "react";
-import { Calendar, Badge } from "antd";
+import React, { useState } from "react";
+import { Calendar } from "antd";
+import { CalendarCellModal } from "../CalendarCellModal";
 import ja from "antd/lib/calendar/locale/ja_JP";
+
 import styles from "./MyCalendar.module.css";
 
 export const MyCalendar: React.FC = () => {
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const [selectDate, setSelectDate] = useState("");
+
+  const selectHandel = (e: any) => {
+    showModal();
+    setSelectDate(e);
+  };
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <>
       <div className={styles["my-calendar"]}>
-        <Calendar locale={ja} />
+        <CalendarCellModal
+          title="募集追加"
+          visible={isModalVisible}
+          selectDate={selectDate}
+          handleCancel={handleCancel}
+          handleOk={handleOk}
+        />
+        <Calendar locale={ja} onSelect={selectHandel} />
       </div>
     </>
   );
