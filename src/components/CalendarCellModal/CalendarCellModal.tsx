@@ -1,12 +1,13 @@
 import React from "react";
 import { Modal, Form, Input, Checkbox, Button } from "antd";
+import { Moment } from "moment";
 
 import styles from "./CalendarCellModal.module.css";
 
 interface IProps {
   title: string;
   visible: boolean;
-  selectDate: any;
+  selectDate?: Moment | undefined;
   handleCancel: () => void;
   handleOk: () => void;
 }
@@ -18,9 +19,6 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
     console.log("Success:", values);
     handleOk();
   };
-
-  // console.log(selectDate.toString());
-  new Date().toString();
 
   return (
     <>
@@ -51,7 +49,7 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
               Submit
             </Button>
           </Form.Item>
-          <div>{selectDate.toString()}</div>
+          <div>{selectDate ? selectDate.format("YYYY-MM-DD") : "none"}</div>
         </Form>
       </Modal>
     </>
