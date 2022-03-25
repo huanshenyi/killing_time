@@ -1,13 +1,13 @@
 import React from "react";
 import { Modal, Form, Input, Checkbox, Button } from "antd";
-import { Moment } from "moment";
+import { DateClickArg } from "@fullcalendar/interaction";
 
 import styles from "./CalendarCellModal.module.css";
 
 interface IProps {
   title: string;
   visible: boolean;
-  selectDate?: Moment | undefined;
+  selectDate?: DateClickArg | undefined;
   handleCancel: () => void;
   handleOk: () => void;
 }
@@ -49,7 +49,7 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
               Submit
             </Button>
           </Form.Item>
-          <div>{selectDate ? selectDate.format("YYYY-MM-DD") : "none"}</div>
+          <div>{selectDate ? selectDate.dateStr : "none"}</div>
         </Form>
       </Modal>
     </>

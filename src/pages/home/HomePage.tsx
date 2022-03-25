@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Header, MyCalendar } from "../../components";
+import { Header, MyCalendar, FullCalender } from "../../components";
 
 import styles from "./HomePage.module.css";
 
@@ -9,7 +9,7 @@ export const HomePage: React.FC = () => {
     <>
       <Header />
       <div className={styles["page-content"]}>
-        <MyCalendar />
+        <FullCalender />
       </div>
     </>
   );
