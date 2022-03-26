@@ -33,7 +33,12 @@ export const FullCalender: React.FC = () => {
       <FullCalendar
         initialView="dayGridMonth"
         plugins={[dayGridPlugin, interactionPlugin]}
+        headerToolbar={{
+          left: undefined,
+          center: "title",
+        }}
         dateClick={handleDateClick}
+        height={700}
         locales={allLocales}
         locale="ja"
       />
