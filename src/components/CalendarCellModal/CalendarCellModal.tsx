@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Form, Input, TimePicker, Button, Switch } from "antd";
 import { DateClickArg } from "@fullcalendar/interaction";
 import { Moment } from "moment";
@@ -16,8 +16,30 @@ interface IProps {
 export const CalendarCellModal: React.FC<IProps> = (props) => {
   const { title, visible, selectDate, handleOk, handleCancel } = props;
 
+  const [isFullDay, setIsFullDay] = useState<boolean>(true);
+  const [isPaid, setPaid] = useState<boolean>(false);
+
+  const chanageFullDay = () => {
+    setIsFullDay(!isFullDay);
+  };
+
+  const chanagePaid = () => {
+    setPaid(!isPaid);
+  };
+
   const onFinish = (values: any) => {
-    console.log("Success:", values, values.end.format("HH:mm:ss"));
+    values.paid = isPaid;
+    values.fullday = isFullDay;
+    if (values.fullday) {
+      values.start = selectDate && selectDate.dateStr + " 00:00:00";
+      values.end = selectDate && selectDate.dateStr + " 23:59:59";
+    } else {
+      values.start =
+        selectDate && selectDate.dateStr + values.start.format(" HH:mm:ss");
+      values.end =
+        selectDate && selectDate.dateStr + values.end.format(" HH:mm:ss");
+    }
+    console.log("Success:", values);
     handleOk();
   };
 
@@ -35,10 +57,11 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
           initialValues={{
             title: "",
             place: "",
-            checked: true,
+            fullday: true,
             start: "",
             end: "",
             content: "",
+            paid: false,
           }}
         >
           <Form.Item label="" name="title">
@@ -47,21 +70,25 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
           <Form.Item label="" name="place">
             <Input placeholder="場所を入力してください" />
           </Form.Item>
-          <Form.Item label="終日" name="checked" valuePropName="checked">
-            <Switch style={{ marginRight: "10px" }} />
+          <Form.Item label="終日">
+            <Switch
+              style={{ marginRight: "10px" }}
+              onChange={chanageFullDay}
+              defaultChecked
+            />
           </Form.Item>
           <Input.Group>
             <Form.Item
               name="start"
               label={selectDate ? selectDate.dateStr + " 開始予定" : "開始予定"}
             >
-              <TimePicker placeholder={"時間を選択"} />
+              <TimePicker placeholder={"時間を選択"} disabled={isFullDay} />
             </Form.Item>
             <Form.Item
               name="end"
               label={selectDate ? selectDate.dateStr + " 終了予定" : "終了予定"}
             >
-              <TimePicker placeholder={"時間を選択"} />
+              <TimePicker placeholder={"時間を選択"} disabled={isFullDay} />
             </Form.Item>
           </Input.Group>
           <Form.Item name="content">
@@ -70,6 +97,12 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
               maxLength={150}
               placeholder="募集詳細を入力してください"
             />
+          </Form.Item>
+          <Form.Item label="有償">
+            <Switch onChange={chanagePaid} />
+          </Form.Item>
+          <Form.Item name="paidContent">
+            <Input disabled={!isPaid} placeholder="報酬内容を入力ください" />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 10, span: 16 }}>
             <Button type="primary" htmlType="submit">

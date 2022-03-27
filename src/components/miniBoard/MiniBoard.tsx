@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Avatar, Tag, Badge } from "antd";
-import { SnippetsTwoTone } from "@ant-design/icons";
+import { SnippetsTwoTone, DollarCircleTwoTone } from "@ant-design/icons";
 
 import styles from "./MiniBoard.module.css";
 
@@ -14,7 +14,19 @@ export const MiniBoard: React.FC = () => {
               <Card actions={[<SnippetsTwoTone key="setting" />]}>
                 <Card.Meta
                   avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                  title="釣り仲間ゆるぼ"
+                  title={
+                    <div>
+                      <DollarCircleTwoTone
+                        spin={true}
+                        style={{
+                          fontSize: "23px",
+                          color: "#08c",
+                          marginRight: "10px",
+                        }}
+                      />
+                      釣り仲間ゆるぼ
+                    </div>
+                  }
                   description="都内のとある場所に釣り行く..."
                 />
                 <div style={{ paddingTop: "10px" }}>
