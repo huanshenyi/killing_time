@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Avatar, Tag, Badge } from "antd";
-import { SettingOutlined, LikeTwoTone } from "@ant-design/icons";
+import { SnippetsTwoTone } from "@ant-design/icons";
 
 import styles from "./MiniBoard.module.css";
 
@@ -11,11 +11,11 @@ export const MiniBoard: React.FC = () => {
         <Card title="おすすめ募集">
           <div className={styles.boardItem}>
             <Badge.Ribbon text={"2022-02-27"}>
-              <Card actions={[<LikeTwoTone key="setting" />]}>
+              <Card actions={[<SnippetsTwoTone key="setting" />]}>
                 <Card.Meta
                   avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
                   title="釣り仲間ゆるぼ"
-                  description="都内のとある場所に釣り行く"
+                  description="都内のとある場所に釣り行く..."
                 />
                 <div style={{ paddingTop: "10px" }}>
                   <Tag color="magenta">都内</Tag>
@@ -27,11 +27,11 @@ export const MiniBoard: React.FC = () => {
           </div>
           <div className={styles.boardItem}>
             <Badge.Ribbon text={"2022-02-27"}>
-              <Card actions={[<LikeTwoTone key="setting" />]}>
+              <Card actions={[<SnippetsTwoTone key="" />]}>
                 <Card.Meta
                   avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
                   title="カラオケ"
-                  description="夜更かしカラオケ"
+                  description="夜更かしカラオケ..."
                 />
                 <div style={{ paddingTop: "10px" }}>
                   <Tag color="magenta">無料</Tag>
