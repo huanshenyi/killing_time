@@ -7,7 +7,12 @@ import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 
 import { CalendarCellModal } from "../CalendarCellModal";
 
-export const FullCalender: React.FC = () => {
+interface Myprops {
+  myRecruitment: [];
+}
+
+export const FullCalender: React.FC<Myprops> = (props) => {
+  const { myRecruitment } = props;
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [selectDate, setSelectDate] = useState<DateClickArg | undefined>();
   const handleOk = () => {
@@ -41,6 +46,7 @@ export const FullCalender: React.FC = () => {
         height={700}
         locales={allLocales}
         locale="ja"
+        events={myRecruitment}
       />
     </>
   );
