@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 
 interface recruitmentItem {
   title: string;
@@ -14,6 +14,13 @@ interface recruitmentItem {
 interface recruitmentState {
   recruitmentList: recruitmentItem[];
 }
+const thisMonth = () => {
+  const today = new Date();
+  return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(
+    2,
+    "0"
+  )}`;
+};
 
 interface MyRecruitmentState {
   loading: boolean;
@@ -27,20 +34,36 @@ const initialState: MyRecruitmentState = {
   data: null,
 };
 
+export const getMyRecruitment = createAsyncThunk(
+  "myRecruitment/getMyRecruitment",
+  async (userId: number, thunkAPI) => {
+    return await [
+      { title: "event 1", date: `${thisMonth()}-01` },
+      { title: "event 2", date: `${thisMonth()}-02` },
+    ];
+    // const {data} = await axios.get(`url/userId`);
+    // return data
+  }
+);
+
 export const myRecruitmentSlice = createSlice({
   name: "myRecruitment",
   initialState,
-  reducers: {
-    fetchStart: (state) => {
+  reducers: {},
+  extraReducers: {
+    [getMyRecruitment.pending.type]: (state) => {
       // return { ...state, loading: true };
       state.loading = true;
     },
-    fetchSuccess: (state, action) => {
+    [getMyRecruitment.fulfilled.type]: (state, action) => {
       state.data = action.payload;
       state.loading = false;
       state.error = null;
     },
-    fetchFail: (state, action: PayloadAction<string | null>) => {
+    [getMyRecruitment.rejected.type]: (
+      state,
+      action: PayloadAction<string | null>
+    ) => {
       state.loading = false;
       state.error = action.payload;
     },

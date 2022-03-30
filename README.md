@@ -10,3 +10,8 @@ Description: Visual Studio Code extension for CSS Modules
 Version: 0.4.1
 Publisher: clinyong
 VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=clinyong.vscode-css-modules
+
+## chrome 拡張機能
+
+Redux DevTools
+https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=ja

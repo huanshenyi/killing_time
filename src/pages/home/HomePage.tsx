@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { Row, Col, Spin } from "antd";
 
 import { Header, FullCalender, TimeLine, MiniBoard } from "../../components";
-import { myRecruitmentSlice } from "../../redux/myRecruitment/slice";
+import {
+  myRecruitmentSlice,
+  getMyRecruitment,
+} from "../../redux/myRecruitment/slice";
 import { useSelector } from "../../redux/hooks";
 import { useDispatch } from "react-redux";
 
@@ -15,32 +18,9 @@ export const HomePage: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const thisMonth = () => {
-    const today = new Date();
-    return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(
-      2,
-      "0"
-    )}`;
-  };
-
   useEffect(() => {
-    const fetchData = async () => {
-      dispatch(myRecruitmentSlice.actions.fetchStart());
-      try {
-        await setTimeout(() => {
-          let data = [
-            { title: "event 1", date: `${thisMonth()}-01` },
-            { title: "event 2", date: `${thisMonth()}-02` },
-          ];
-          dispatch(myRecruitmentSlice.actions.fetchSuccess(data));
-        }, 2000);
-      } catch (error) {
-        if (error instanceof Error) {
-          dispatch(myRecruitmentSlice.actions.fetchFail(error.message));
-        }
-      }
-    };
-    fetchData();
+    // userIdを渡す
+    dispatch(getMyRecruitment(1));
   }, []);
 
   if (loading) {
