@@ -1,20 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { axios } from "../../http/request";
 
-interface recruitmentItem {
-  title: string;
-  place: string;
-  fullday: boolean;
-  start: string;
-  end: string;
-  content: string;
-  paid: boolean;
-  status?: boolean;
-}
-
-interface recruitmentState {
-  recruitmentList: recruitmentItem[];
-}
 const thisMonth = () => {
   const today = new Date();
   return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(
@@ -45,6 +31,15 @@ export const getMyRecruitment = createAsyncThunk(
   }
 );
 
+// 募集追加のReducers
+export const postMyRecruitment = createAsyncThunk(
+  "myRecruitment/postMyRecruitment",
+  async (recruitmentItem: any, thunkAPI) => {
+    const { data } = await axios.post(`/myRecruitment`, recruitmentItem);
+    return data;
+  }
+);
+
 export const myRecruitmentSlice = createSlice({
   name: "myRecruitment",
   initialState,
@@ -64,6 +59,17 @@ export const myRecruitmentSlice = createSlice({
       action: PayloadAction<string | null>
     ) => {
       state.loading = false;
+      state.error = action.payload;
+    },
+    [postMyRecruitment.pending.type]: (state) => {},
+    [postMyRecruitment.fulfilled.type]: (state, action) => {
+      state.data = [...state.data, action.payload];
+      state.error = null;
+    },
+    [postMyRecruitment.rejected.type]: (
+      state,
+      action: PayloadAction<string | null>
+    ) => {
       state.error = action.payload;
     },
   },
