@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
+import { axios } from "../../http/request";
 
 interface recruitmentItem {
   title: string;
@@ -37,10 +38,8 @@ const initialState: MyRecruitmentState = {
 export const getMyRecruitment = createAsyncThunk(
   "myRecruitment/getMyRecruitment",
   async (userId: number, thunkAPI) => {
-    return await [
-      { title: "event 1", date: `${thisMonth()}-01` },
-      { title: "event 2", date: `${thisMonth()}-02` },
-    ];
+    const { data } = await axios.get(`/myRecruitment`);
+    return data;
     // const {data} = await axios.get(`url/userId`);
     // return data
   }

@@ -1,0 +1,12 @@
+{
+    "users": [
+      {
+        "name": "rose",
+        "id": 1
+      }
+    ],
+    "myRecruitment": [
+      { "title": "event 1", "date": "2022-03-21"},
+      { "title": "event 2", "date": "2022-03-22"}
+    ]
+}
