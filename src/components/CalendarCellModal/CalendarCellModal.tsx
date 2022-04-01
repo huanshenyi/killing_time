@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Form, Input, TimePicker, Button, Switch } from "antd";
 import { DateClickArg } from "@fullcalendar/interaction";
-import { Moment } from "moment";
+import { useDispatch } from "react-redux";
+import { postMyRecruitment } from "../../redux/myRecruitment/slice";
 
 import styles from "./CalendarCellModal.module.css";
 
@@ -19,12 +20,18 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
   const [isFullDay, setIsFullDay] = useState<boolean>(true);
   const [isPaid, setPaid] = useState<boolean>(false);
 
+  const dispatch = useDispatch();
+
   const chanageFullDay = () => {
     setIsFullDay(!isFullDay);
   };
 
   const chanagePaid = () => {
     setPaid(!isPaid);
+  };
+
+  const randomRange = (min: number, max: number) => {
+    return Math.floor(Math.random() * (max - min)) + min;
   };
 
   const onFinish = (values: any) => {
@@ -40,6 +47,14 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
         selectDate && selectDate.dateStr + values.end.format(" HH:mm:ss");
     }
     console.log("Success:", values);
+    // テスト用
+    dispatch(
+      postMyRecruitment({
+        id: randomRange(10, 100000),
+        title: values.title,
+        date: values.start,
+      })
+    );
     handleOk();
   };
 

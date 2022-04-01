@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 import { Row, Col, Spin } from "antd";
 
 import { Header, FullCalender, TimeLine, MiniBoard } from "../../components";
-import {
-  myRecruitmentSlice,
-  getMyRecruitment,
-} from "../../redux/myRecruitment/slice";
+import { getMyRecruitment } from "../../redux/myRecruitment/slice";
 import { useSelector } from "../../redux/hooks";
 import { useDispatch } from "react-redux";
 
