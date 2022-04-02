@@ -3,9 +3,13 @@ import React, { useCallback, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import allLocales from "@fullcalendar/core/locales-all";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
+import interactionPlugin, {
+  DateClickArg,
+  EventDragStartArg,
+} from "@fullcalendar/interaction";
 
 import { CalendarCellModal } from "../CalendarCellModal";
+import { CalendarCellEventModal } from "../calendarCellEventModal";
 
 interface Myprops {
   myRecruitment: [];
@@ -14,6 +18,9 @@ interface Myprops {
 export const FullCalender: React.FC<Myprops> = (props) => {
   const { myRecruitment } = props;
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const [isEventModalVisible, setIsEventModalVisible] =
+    useState<boolean>(false);
+  const [eventData, setEventData] = useState({});
   const [selectDate, setSelectDate] = useState<DateClickArg | undefined>();
   const handleOk = () => {
     setIsModalVisible(false);
@@ -26,8 +33,26 @@ export const FullCalender: React.FC<Myprops> = (props) => {
     setSelectDate(arg);
     setIsModalVisible(true);
   }, []);
+
+  const handleEventClick = (eventInfo: EventDragStartArg) => {
+    setIsEventModalVisible(true);
+    setEventData({
+      title: eventInfo.event.title,
+      startStr: eventInfo.event.startStr,
+    });
+  };
+
+  const handelEventModelCandel = () => {
+    setIsEventModalVisible(false);
+  };
+
   return (
     <>
+      <CalendarCellEventModal
+        isModalVisible={isEventModalVisible}
+        eventTargetData={eventData}
+        setIsModalVisible={handelEventModelCandel}
+      />
       <CalendarCellModal
         title="募集追加"
         visible={isModalVisible}
@@ -47,6 +72,7 @@ export const FullCalender: React.FC<Myprops> = (props) => {
         locales={allLocales}
         locale="ja"
         events={myRecruitment}
+        eventClick={handleEventClick}
       />
     </>
   );
