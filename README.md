@@ -2,6 +2,13 @@
 
 暇な時間をただで終わらせません、案件とマッチングして、快楽、もしくは金銭を得よう。
 
+## ローカル開発
+
+```
+yarn dev
+yarn json-server
+```
+
 ## vscode 拡張機能
 
 Name: CSS Modules
