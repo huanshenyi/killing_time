@@ -31,6 +31,5 @@ export const postMyRecruitmentApi = (value: PostMyRecruitmentItem) => {
   const recruitmentBody: PostMyRecruitmentItem = value;
   recruitmentBody.start = format(new Date(value.start), "yyyy-MM-dd HH:mm:ss");
   recruitmentBody.end = format(new Date(value.end), "yyyy-MM-dd HH:mm:ss");
-  console.log(recruitmentBody.start, recruitmentBody.end);
   return axios.post("/myRecruitment", recruitmentBody);
 };

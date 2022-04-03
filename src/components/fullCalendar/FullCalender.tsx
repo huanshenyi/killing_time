@@ -7,6 +7,7 @@ import interactionPlugin, {
   DateClickArg,
   EventDragStartArg,
 } from "@fullcalendar/interaction";
+import { format } from "date-fns";
 
 import { CalendarCellModal } from "../CalendarCellModal";
 import { CalendarCellEventModal } from "../calendarCellEventModal";
@@ -37,8 +38,14 @@ export const FullCalender: React.FC<Myprops> = (props) => {
   const handleEventClick = (eventInfo: EventDragStartArg) => {
     setIsEventModalVisible(true);
     setEventData({
+      ...eventInfo.event.extendedProps,
+      start: format(
+        new Date(String(eventInfo.event.start)),
+        "yyyy-MM-dd HH:mm:ss"
+      ),
+      end: format(new Date(String(eventInfo.event.end)), "yyyy-MM-dd HH:mm:ss"),
+      id: eventInfo.event.id,
       title: eventInfo.event.title,
-      startStr: eventInfo.event.startStr,
     });
   };
 
