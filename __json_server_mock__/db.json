@@ -7,19 +7,42 @@
   ],
   "myRecruitment": [
     {
-      "id": 75214,
-      "title": "上野",
-      "date": "2022-04-03 08:00:00"
+      "title": "上野ご飯",
+      "place": "上野御徒町商店街",
+      "fullday": false,
+      "start": "2022-04-03 08:00:00",
+      "end": "2022-04-03 10:16:00",
+      "content": "詳細です。",
+      "paid": true,
+      "paidContent": "100円",
+      "numberLimit": 1,
+      "type": "recruitment",
+      "id": 1
     },
     {
-      "id": 86230,
-      "title": "上野映画",
-      "date": "2022-04-03 10:00:00"
+      "title": "仕事",
+      "place": "家",
+      "fullday": false,
+      "start": "2022-04-04 09:05:00",
+      "end": "2022-04-04 16:30:00",
+      "content": "仕事",
+      "paid": false,
+      "paidContent": "",
+      "numberLimit": 1,
+      "type": "recruitment",
+      "id": 2
     },
     {
-      "id": 87059,
       "title": "xx",
-      "date": "2022-04-04 11:00:00"
+      "place": "xx",
+      "fullday": true,
+      "start": "2022-04-05 00:00:00",
+      "end": "2022-04-05 23:59:59",
+      "content": "xx",
+      "paid": false,
+      "numberLimit": 1,
+      "type": "recruitment",
+      "id": 3
     }
   ]
 }

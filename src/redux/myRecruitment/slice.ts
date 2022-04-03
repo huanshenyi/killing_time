@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { axios } from "../../http/request";
+import { postMyRecruitmentApi, PostMyRecruitmentItem } from "../../http/api";
 
 const thisMonth = () => {
   const today = new Date();
@@ -34,8 +35,8 @@ export const getMyRecruitment = createAsyncThunk(
 // 募集追加のReducers
 export const postMyRecruitment = createAsyncThunk(
   "myRecruitment/postMyRecruitment",
-  async (recruitmentItem: any, thunkAPI) => {
-    const { data } = await axios.post(`/myRecruitment`, recruitmentItem);
+  async (recruitmentItem: PostMyRecruitmentItem, thunkAPI) => {
+    const { data } = await postMyRecruitmentApi(recruitmentItem);
     return data;
   }
 );

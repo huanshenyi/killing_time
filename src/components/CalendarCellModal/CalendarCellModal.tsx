@@ -1,8 +1,17 @@
 import React, { useState } from "react";
-import { Modal, Form, Input, TimePicker, Button, Switch } from "antd";
+import {
+  Modal,
+  Form,
+  Input,
+  TimePicker,
+  Button,
+  Switch,
+  InputNumber,
+} from "antd";
 import { DateClickArg } from "@fullcalendar/interaction";
 import { useDispatch } from "react-redux";
 import { postMyRecruitment } from "../../redux/myRecruitment/slice";
+import { initialMyRecruitmentItemData } from "../../models/recruitment";
 
 import styles from "./CalendarCellModal.module.css";
 
@@ -47,14 +56,16 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
         selectDate && selectDate.dateStr + values.end.format(" HH:mm:ss");
     }
     console.log("Success:", values);
-    // テスト用
-    dispatch(
-      postMyRecruitment({
-        id: randomRange(10, 100000),
-        title: values.title,
-        date: values.start,
-      })
-    );
+    initialMyRecruitmentItemData.title = values.title;
+    initialMyRecruitmentItemData.place = values.place;
+    initialMyRecruitmentItemData.fullday = values.fullday;
+    initialMyRecruitmentItemData.start = values.start;
+    initialMyRecruitmentItemData.end = values.end;
+    initialMyRecruitmentItemData.content = values.content;
+    initialMyRecruitmentItemData.paid = values.paid;
+    initialMyRecruitmentItemData.paidContent = values.paidContent;
+    initialMyRecruitmentItemData.numberLimit = values.numberLimit;
+    dispatch(postMyRecruitment(initialMyRecruitmentItemData));
     handleOk();
   };
 
@@ -77,6 +88,7 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
             end: "",
             content: "",
             paid: false,
+            numberLimit: 1,
           }}
         >
           <Form.Item label="" name="title">
@@ -118,6 +130,9 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
           </Form.Item>
           <Form.Item name="paidContent">
             <Input disabled={!isPaid} placeholder="報酬内容を入力ください" />
+          </Form.Item>
+          <Form.Item label="最大応募人数" name="numberLimit">
+            <InputNumber min={1} max={10} />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 10, span: 16 }}>
             <Button type="primary" htmlType="submit">

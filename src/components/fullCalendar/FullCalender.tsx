@@ -73,6 +73,13 @@ export const FullCalender: React.FC<Myprops> = (props) => {
         locale="ja"
         events={myRecruitment}
         eventClick={handleEventClick}
+        displayEventEnd
+        eventTimeFormat={{
+          hour: "2-digit",
+          minute: "2-digit",
+          meridiem: false,
+          hour12: false,
+        }}
       />
     </>
   );
