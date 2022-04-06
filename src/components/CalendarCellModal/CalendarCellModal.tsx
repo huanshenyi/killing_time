@@ -55,7 +55,6 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
       values.end =
         selectDate && selectDate.dateStr + values.end.format(" HH:mm:ss");
     }
-    console.log("Success:", values);
     initialMyRecruitmentItemData.title = values.title;
     initialMyRecruitmentItemData.place = values.place;
     initialMyRecruitmentItemData.fullday = values.fullday;

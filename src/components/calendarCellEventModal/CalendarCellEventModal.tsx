@@ -17,12 +17,27 @@ import {
   getMyRecruitment,
 } from "../../redux/myRecruitment/slice";
 import { useDispatch } from "react-redux";
+import { RecruitmentType } from "../../models/recruitment";
 
 import styles from "./CalendarCellEventModal.module.css";
 
+export interface EventTargetDate {
+  id: number;
+  title: string;
+  place: string;
+  fullday: true;
+  start: string;
+  end: string;
+  content: string;
+  paid: false;
+  paidContent: string;
+  numberLimit: number;
+  type: RecruitmentType;
+}
+
 interface IProps {
   isModalVisible: boolean;
-  eventTargetData: any;
+  eventTargetData: EventTargetDate;
   setIsModalVisible: () => void;
 }
 
