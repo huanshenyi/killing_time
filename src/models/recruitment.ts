@@ -12,3 +12,5 @@ export const initialMyRecruitmentItemData: PostMyRecruitmentItem = {
   numberLimit: 1,
   type: "recruitment",
 };
+
+export type RecruitmentType = "recruitment" | "openTime" | "application" | "";

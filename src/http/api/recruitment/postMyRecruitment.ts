@@ -1,5 +1,6 @@
 import { axios } from "../../request";
 import { format } from "date-fns";
+import { RecruitmentType } from "../../../models/recruitment";
 
 export interface PostMyRecruitmentItem {
   /**
@@ -13,7 +14,7 @@ export interface PostMyRecruitmentItem {
    * @param paid        - 募集は有償か無償
    * @param paidContent - 奨励内容
    * @param numberLimit - 制限人数
-   * @param type        - 募集か応募か
+   * @param type        - 募集か応募か空き時間か
    */
   title: string;
   place: string;
@@ -24,7 +25,7 @@ export interface PostMyRecruitmentItem {
   paid: false;
   paidContent: string;
   numberLimit: number;
-  type?: "recruitment" | "application";
+  type: RecruitmentType;
 }
 
 export const postMyRecruitmentApi = (value: PostMyRecruitmentItem) => {

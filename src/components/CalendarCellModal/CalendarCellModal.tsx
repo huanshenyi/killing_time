@@ -65,6 +65,7 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
     initialMyRecruitmentItemData.paid = values.paid;
     initialMyRecruitmentItemData.paidContent = values.paidContent;
     initialMyRecruitmentItemData.numberLimit = values.numberLimit;
+    initialMyRecruitmentItemData.type = "recruitment";
     dispatch(postMyRecruitment(initialMyRecruitmentItemData));
     handleOk();
   };
