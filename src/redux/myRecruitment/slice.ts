@@ -1,6 +1,10 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { axios } from "../../http/request";
-import { postMyRecruitmentApi, PostMyRecruitmentItem } from "../../http/api";
+import {
+  postMyRecruitmentApi,
+  PostMyRecruitmentItem,
+  deleteMyRecruitmentApi,
+} from "../../http/api";
 
 const thisMonth = () => {
   const today = new Date();
@@ -41,6 +45,15 @@ export const postMyRecruitment = createAsyncThunk(
   }
 );
 
+// 募集削除のReducers
+export const deleteMyRecruitment = createAsyncThunk(
+  "myRecruitment/deleteMyRecruitment",
+  async (recruitmentItemId: number, thunkAPI) => {
+    const { data } = await deleteMyRecruitmentApi(recruitmentItemId);
+    return data;
+  }
+);
+
 export const myRecruitmentSlice = createSlice({
   name: "myRecruitment",
   initialState,
@@ -68,6 +81,14 @@ export const myRecruitmentSlice = createSlice({
       state.error = null;
     },
     [postMyRecruitment.rejected.type]: (
+      state,
+      action: PayloadAction<string | null>
+    ) => {
+      state.error = action.payload;
+    },
+    [deleteMyRecruitment.pending.type]: (state) => {},
+    [deleteMyRecruitment.fulfilled.type]: (state, action) => {},
+    [deleteMyRecruitment.rejected.type]: (
       state,
       action: PayloadAction<string | null>
     ) => {

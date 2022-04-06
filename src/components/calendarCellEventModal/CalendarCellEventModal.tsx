@@ -1,15 +1,7 @@
 import React from "react";
 import { format } from "date-fns";
 import ja from "date-fns/locale/ja";
-import {
-  Modal,
-  Button,
-  Popover,
-  Descriptions,
-  Row,
-  Col,
-  Statistic,
-} from "antd";
+import { Modal, Button, Popover, Row, Col, Statistic, Alert } from "antd";
 import {
   DollarCircleOutlined,
   DeleteTwoTone,
@@ -20,6 +12,11 @@ import {
   CalendarOutlined,
   SnippetsTwoTone,
 } from "@ant-design/icons";
+import {
+  deleteMyRecruitment,
+  getMyRecruitment,
+} from "../../redux/myRecruitment/slice";
+import { useDispatch } from "react-redux";
 
 import styles from "./CalendarCellEventModal.module.css";
 
@@ -31,8 +28,13 @@ interface IProps {
 
 export const CalendarCellEventModal: React.FC<IProps> = (props) => {
   const { isModalVisible, eventTargetData, setIsModalVisible } = props;
-  // TODO:: 時間の表示は 20xx月xx日 xx時xx分 ~ xx時xx分
-  // fulldayで表示制御する
+  //TODO: fulldayで表示制御する
+  const dispatch = useDispatch();
+  const handelDeleteMyRecruitmentItem = (itemID: number) => {
+    dispatch(deleteMyRecruitment(itemID));
+    setIsModalVisible();
+    dispatch(getMyRecruitment(1));
+  };
   return (
     <>
       <Modal
@@ -59,7 +61,7 @@ export const CalendarCellEventModal: React.FC<IProps> = (props) => {
           <Button
             key="delete"
             onClick={() => {
-              console.log(eventTargetData.id);
+              handelDeleteMyRecruitmentItem(eventTargetData.id);
             }}
           >
             <Popover content={<div>予定を削除</div>}>
