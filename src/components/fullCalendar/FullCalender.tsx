@@ -10,19 +10,19 @@ import interactionPlugin, {
 import { format } from "date-fns";
 import { useDispatch } from "react-redux";
 
-import { CalendarCellModal } from "../CalendarCellModal";
-import { CalendarCellEventModal } from "../calendarCellEventModal";
-import { EventTargetDate } from "../calendarCellEventModal";
-import { Alert } from "../alert";
+import { CalendarCellModal } from "@/components/CalendarCellModal";
+import { CalendarCellEventModal } from "@/components/calendarCellEventModal";
+import { EventTargetDate } from "@/components/calendarCellEventModal";
+import { Alert } from "@/components/alert";
 import {
   displayAlert,
   hideAlert,
   setAlertContent,
-} from "../../redux/alertControl/slice";
+} from "@/redux/alertControl/slice";
 import {
   deleteMyRecruitment,
   getMyRecruitment,
-} from "../../redux/myRecruitment/slice";
+} from "@/redux/myRecruitment/slice";
 
 interface Myprops {
   myRecruitment: [];

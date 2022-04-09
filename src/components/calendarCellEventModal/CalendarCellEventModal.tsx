@@ -1,7 +1,7 @@
 import React from "react";
 import { format } from "date-fns";
 import ja from "date-fns/locale/ja";
-import { Modal, Button, Popover, Row, Col, Statistic, Alert } from "antd";
+import { Modal, Button, Popover, Row, Col, Statistic } from "antd";
 import {
   DollarCircleOutlined,
   DeleteTwoTone,
@@ -12,7 +12,7 @@ import {
   CalendarOutlined,
   SnippetsTwoTone,
 } from "@ant-design/icons";
-import { RecruitmentType } from "../../models/recruitment";
+import { RecruitmentType } from "@/models";
 
 import styles from "./CalendarCellEventModal.module.css";
 

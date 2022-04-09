@@ -1,6 +1,6 @@
 import React from "react";
 import { Alert as AntdAlert } from "antd";
-import { useSelector } from "../../redux/hooks";
+import { useSelector } from "@/redux/hooks";
 
 import styles from "./Alert.module.css";
 
