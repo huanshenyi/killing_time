@@ -12,11 +12,6 @@ import {
   CalendarOutlined,
   SnippetsTwoTone,
 } from "@ant-design/icons";
-import {
-  deleteMyRecruitment,
-  getMyRecruitment,
-} from "../../redux/myRecruitment/slice";
-import { useDispatch } from "react-redux";
 import { RecruitmentType } from "../../models/recruitment";
 
 import styles from "./CalendarCellEventModal.module.css";
@@ -39,16 +34,20 @@ interface IProps {
   isModalVisible: boolean;
   eventTargetData: EventTargetDate;
   setIsModalVisible: () => void;
+  handelEventDeleteRecruitment: (recruitmentId: number) => void;
 }
 
 export const CalendarCellEventModal: React.FC<IProps> = (props) => {
-  const { isModalVisible, eventTargetData, setIsModalVisible } = props;
+  const {
+    isModalVisible,
+    eventTargetData,
+    setIsModalVisible,
+    handelEventDeleteRecruitment,
+  } = props;
   //TODO: fulldayで表示制御する
-  const dispatch = useDispatch();
   const handelDeleteMyRecruitmentItem = (itemID: number) => {
-    dispatch(deleteMyRecruitment(itemID));
+    handelEventDeleteRecruitment(itemID);
     setIsModalVisible();
-    dispatch(getMyRecruitment(1));
   };
   return (
     <>

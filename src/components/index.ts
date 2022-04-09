@@ -3,3 +3,4 @@ export * from "./CalendarCellModal";
 export * from "./fullCalendar";
 export * from "./timeLine";
 export * from "./miniBoard";
+export * from "./alert";

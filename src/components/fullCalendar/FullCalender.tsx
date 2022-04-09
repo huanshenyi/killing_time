@@ -8,16 +8,28 @@ import interactionPlugin, {
   EventDragStartArg,
 } from "@fullcalendar/interaction";
 import { format } from "date-fns";
+import { useDispatch } from "react-redux";
 
 import { CalendarCellModal } from "../CalendarCellModal";
 import { CalendarCellEventModal } from "../calendarCellEventModal";
 import { EventTargetDate } from "../calendarCellEventModal";
+import { Alert } from "../alert";
+import {
+  displayAlert,
+  hideAlert,
+  setAlertContent,
+} from "../../redux/alertControl/slice";
+import {
+  deleteMyRecruitment,
+  getMyRecruitment,
+} from "../../redux/myRecruitment/slice";
 
 interface Myprops {
   myRecruitment: [];
 }
 
 export const FullCalender: React.FC<Myprops> = (props) => {
+  const dispatch = useDispatch();
   const { myRecruitment } = props;
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [isEventModalVisible, setIsEventModalVisible] =
@@ -36,8 +48,17 @@ export const FullCalender: React.FC<Myprops> = (props) => {
     type: "recruitment",
   });
   const [selectDate, setSelectDate] = useState<DateClickArg | undefined>();
+
+  // 予定追加完了時
   const handleOk = () => {
     setIsModalVisible(false);
+    dispatch(
+      setAlertContent({ type: "success", message: "予定追加されました" })
+    );
+    dispatch(displayAlert());
+    setTimeout(() => {
+      dispatch(hideAlert());
+    }, 5000);
   };
 
   const handleCancel = () => {
@@ -72,12 +93,25 @@ export const FullCalender: React.FC<Myprops> = (props) => {
     setIsEventModalVisible(false);
   };
 
+  // 予定の削除
+  const handelEventDeleteRecruitment = (recruitmentId: number) => {
+    dispatch(deleteMyRecruitment(recruitmentId));
+    dispatch(getMyRecruitment(1));
+    dispatch(setAlertContent({ type: "info", message: "予定削除されました" }));
+    dispatch(displayAlert());
+    setTimeout(() => {
+      dispatch(hideAlert());
+    }, 5000);
+  };
+
   return (
     <>
+      <Alert />
       <CalendarCellEventModal
         isModalVisible={isEventModalVisible}
         eventTargetData={eventData}
         setIsModalVisible={handelEventModelCandel}
+        handelEventDeleteRecruitment={handelEventDeleteRecruitment}
       />
       <CalendarCellModal
         title="募集追加"

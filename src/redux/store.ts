@@ -6,9 +6,11 @@ import {
 } from "@reduxjs/toolkit";
 import recruitmentReducer from "./recruitmentReducer";
 import { myRecruitmentSlice } from "./myRecruitment/slice";
+import { alertControlSlice } from "./alertControl/slice";
 
 const rootReducer = combineReducers({
   myRecruitment: myRecruitmentSlice.reducer,
+  alertControl: alertControlSlice.reducer,
 });
 
 // const store = createStore(rootReducer);
