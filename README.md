@@ -22,3 +22,8 @@ VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=clinyon
 
 Redux DevTools
 https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=ja
+
+## ドキュメント
+
+Alias の設定
+https://blog.csdn.net/weixin_46787337/article/details/123456831
