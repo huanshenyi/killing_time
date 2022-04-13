@@ -56,6 +56,30 @@
       "numberLimit": 1,
       "type": "recruitment",
       "id": 5
+    },
+    {
+      "title": "xx",
+      "place": "xx",
+      "fullday": true,
+      "start": "2022-04-13 00:00:00",
+      "end": "2022-04-13 23:59:59",
+      "content": "",
+      "paid": false,
+      "numberLimit": 1,
+      "type": "recruitment",
+      "id": 6
+    },
+    {
+      "title": "xxx",
+      "place": "xx",
+      "fullday": true,
+      "start": "2022-04-13 00:00:00",
+      "end": "2022-04-13 23:59:59",
+      "content": "",
+      "paid": false,
+      "numberLimit": 1,
+      "type": "recruitment",
+      "id": 7
     }
   ]
 }

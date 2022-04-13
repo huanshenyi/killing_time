@@ -49,6 +49,12 @@ export const CalendarCellEventModal: React.FC<IProps> = (props) => {
     handelEventDeleteRecruitment(itemID);
     setIsModalVisible();
   };
+
+  const handelFixMyRecruitmentItem = (itemID: number) => {
+    //todo: 開始後の修正は不可能
+    // 参加者いれば修正も不可能
+    console.log(itemID);
+  };
   return (
     <>
       <Modal
@@ -65,7 +71,7 @@ export const CalendarCellEventModal: React.FC<IProps> = (props) => {
           <Button
             key="fix"
             onClick={() => {
-              console.log(eventTargetData.id);
+              handelFixMyRecruitmentItem(eventTargetData.id);
             }}
           >
             <Popover content={<div>編集</div>}>

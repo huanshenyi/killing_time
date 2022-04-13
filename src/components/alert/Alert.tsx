@@ -17,6 +17,7 @@ export const Alert: React.FC<AlertProps> = ({}) => {
     <div>
       {visible ? (
         <AntdAlert
+          className={styles.alert}
           message={message}
           description={description}
           type={type}
