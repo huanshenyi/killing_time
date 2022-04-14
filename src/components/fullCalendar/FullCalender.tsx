@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import { CalendarCellModal } from "@/components/CalendarCellModal";
 import { CalendarCellEventModal } from "@/components/calendarCellEventModal";
 import { EventTargetDate } from "@/components/calendarCellEventModal";
-import { Alert } from "@/components/alert";
+import { CalenderCellFixModal, Alert } from "@/components";
 import {
   displayAlert,
   hideAlert,
@@ -48,6 +48,7 @@ export const FullCalender: React.FC<Myprops> = (props) => {
     type: "recruitment",
   });
   const [selectDate, setSelectDate] = useState<DateClickArg | undefined>();
+  const [fixModalVisible, setFixModalVisible] = useState<boolean>(false);
 
   // 予定追加完了時
   const handleOk = () => {
@@ -104,14 +105,30 @@ export const FullCalender: React.FC<Myprops> = (props) => {
     }, 5000);
   };
 
+  // 募集の修正
+  const handelShowFixModal = () => {
+    handelEventModelCandel();
+    setFixModalVisible(true);
+  };
+
+  const handelHideFixModal = () => {
+    setFixModalVisible(false);
+  };
+
   return (
     <>
       <Alert />
+      <CalenderCellFixModal
+        visible={fixModalVisible}
+        handleCancel={handelHideFixModal}
+        handleOk={handelHideFixModal}
+      />
       <CalendarCellEventModal
         isModalVisible={isEventModalVisible}
         eventTargetData={eventData}
         setIsModalVisible={handelEventModelCandel}
         handelEventDeleteRecruitment={handelEventDeleteRecruitment}
+        handelShowFixModal={handelShowFixModal}
       />
       <CalendarCellModal
         title="募集追加"

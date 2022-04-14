@@ -7,10 +7,12 @@ import {
 import recruitmentReducer from "./recruitmentReducer";
 import { myRecruitmentSlice } from "./myRecruitment/slice";
 import { alertControlSlice } from "./alertControl/slice";
+import { recruitmentItemSlice } from "./recruitmentItem/slice";
 
 const rootReducer = combineReducers({
   myRecruitment: myRecruitmentSlice.reducer,
   alertControl: alertControlSlice.reducer,
+  recruitmentItem: recruitmentItemSlice.reducer,
 });
 
 // const store = createStore(rootReducer);

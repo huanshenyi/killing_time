@@ -14,6 +14,9 @@ import {
 } from "@ant-design/icons";
 import { RecruitmentType } from "@/models";
 
+import { useDispatch } from "react-redux";
+import { setRecruitmentItem } from "@/redux/recruitmentItem/slice";
+
 import styles from "./CalendarCellEventModal.module.css";
 
 export interface EventTargetDate {
@@ -35,14 +38,17 @@ interface IProps {
   eventTargetData: EventTargetDate;
   setIsModalVisible: () => void;
   handelEventDeleteRecruitment: (recruitmentId: number) => void;
+  handelShowFixModal: () => void;
 }
 
 export const CalendarCellEventModal: React.FC<IProps> = (props) => {
+  const dispatch = useDispatch();
   const {
     isModalVisible,
     eventTargetData,
     setIsModalVisible,
     handelEventDeleteRecruitment,
+    handelShowFixModal,
   } = props;
   //TODO: fulldayで表示制御する
   const handelDeleteMyRecruitmentItem = (itemID: number) => {
@@ -50,10 +56,11 @@ export const CalendarCellEventModal: React.FC<IProps> = (props) => {
     setIsModalVisible();
   };
 
-  const handelFixMyRecruitmentItem = (itemID: number) => {
+  const handelFixMyRecruitmentItem = (item: EventTargetDate) => {
     //todo: 開始後の修正は不可能
     // 参加者いれば修正も不可能
-    console.log(itemID);
+    dispatch(setRecruitmentItem(item));
+    handelShowFixModal();
   };
   return (
     <>
@@ -71,7 +78,7 @@ export const CalendarCellEventModal: React.FC<IProps> = (props) => {
           <Button
             key="fix"
             onClick={() => {
-              handelFixMyRecruitmentItem(eventTargetData.id);
+              handelFixMyRecruitmentItem(eventTargetData);
             }}
           >
             <Popover content={<div>編集</div>}>
