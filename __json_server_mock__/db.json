@@ -7,29 +7,23 @@
   ],
   "myRecruitment": [
     {
-      "title": "上野ご飯",
+      "title": "上野ご飯1",
       "place": "上野御徒町商店街",
-      "fullday": false,
-      "start": "2022-04-03 08:00:00",
-      "end": "2022-04-03 10:16:00",
+      "start": "2022-04-17T11:00:00.000Z",
+      "end": "2022-04-17T11:16:00.000Z",
       "content": "詳細です。",
-      "paid": true,
       "paidContent": "100円",
       "numberLimit": 1,
-      "type": "recruitment",
       "id": 1
     },
     {
-      "title": "仕事",
-      "place": "家",
-      "fullday": false,
-      "start": "2022-04-04 09:05:00",
-      "end": "2022-04-04 16:30:00",
+      "title": "仕事です",
+      "place": "家x",
+      "start": "2022-04-04 20:10:00",
+      "end": "2022-04-04 20:20:00",
       "content": "仕事",
-      "paid": false,
       "paidContent": "",
       "numberLimit": 1,
-      "type": "recruitment",
       "id": 2
     },
     {

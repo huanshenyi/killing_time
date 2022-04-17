@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { format } from "date-fns";
 import {
   Modal,
   Form,
@@ -9,10 +10,12 @@ import {
   InputNumber,
 } from "antd";
 import { useSelector } from "@/redux/hooks";
+import { useDispatch } from "react-redux";
 import {
-  RecruitmentItemContext,
-  initialState,
-} from "@/redux/recruitmentItem/slice";
+  getMyRecruitment,
+  putMyRecruitment,
+} from "@/redux/myRecruitment/slice";
+import { RecruitmentItemContext } from "@/redux/recruitmentItem/slice";
 import moment from "moment";
 
 interface IProps {
@@ -26,6 +29,8 @@ export const CalenderCellFixModal: React.FC<IProps> = ({
   handleCancel,
   handleOk,
 }) => {
+  const dispatch = useDispatch();
+
   const [isFullDay, setIsFullDay] = useState<boolean>(true);
   const [isPaid, setPaid] = useState<boolean>(false);
 
@@ -37,7 +42,20 @@ export const CalenderCellFixModal: React.FC<IProps> = ({
   }, [recruitmentItem]);
 
   const onSubmit = (value: RecruitmentItemContext) => {
-    console.log(value);
+    dispatch(
+      putMyRecruitment({
+        ...value,
+        id: recruitmentItem.id,
+        start:
+          recruitmentItem.start.substring(0, 11) +
+          format(new Date(value.start), "HH:mm:ss"),
+        end:
+          recruitmentItem.end.substring(0, 11) +
+          format(new Date(value.end), "HH:mm:ss"),
+      })
+    );
+    handleOk();
+    dispatch(getMyRecruitment(1));
   };
 
   const chanageFullDay = () => {

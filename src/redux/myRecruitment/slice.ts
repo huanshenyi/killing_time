@@ -4,7 +4,10 @@ import {
   postMyRecruitmentApi,
   PostMyRecruitmentItem,
   deleteMyRecruitmentApi,
+  putMyRecruitmentApi,
 } from "../../http/api";
+
+import { RecruitmentItemContext } from "@/redux/recruitmentItem/slice";
 
 const thisMonth = () => {
   const today = new Date();
@@ -54,6 +57,15 @@ export const deleteMyRecruitment = createAsyncThunk(
   }
 );
 
+// 募集修正のReducers
+export const putMyRecruitment = createAsyncThunk(
+  "myRecruitment/putMyRecruitment",
+  async (recruitmentItem: RecruitmentItemContext, thunkAPI) => {
+    const { data } = await putMyRecruitmentApi(recruitmentItem);
+    return data;
+  }
+);
+
 export const myRecruitmentSlice = createSlice({
   name: "myRecruitment",
   initialState,
@@ -89,6 +101,14 @@ export const myRecruitmentSlice = createSlice({
     [deleteMyRecruitment.pending.type]: (state) => {},
     [deleteMyRecruitment.fulfilled.type]: (state, action) => {},
     [deleteMyRecruitment.rejected.type]: (
+      state,
+      action: PayloadAction<string | null>
+    ) => {
+      state.error = action.payload;
+    },
+    [putMyRecruitment.pending.type]: (state) => {},
+    [putMyRecruitment.fulfilled.type]: (state, action) => {},
+    [putMyRecruitment.rejected.type]: (
       state,
       action: PayloadAction<string | null>
     ) => {
