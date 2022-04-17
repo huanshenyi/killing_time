@@ -15,7 +15,10 @@ import {
 import { RecruitmentType } from "@/models";
 
 import { useDispatch } from "react-redux";
-import { setRecruitmentItem } from "@/redux/recruitmentItem/slice";
+import {
+  setRecruitmentItem,
+  resetRecruitmentItem,
+} from "@/redux/recruitmentItem/slice";
 
 import styles from "./CalendarCellEventModal.module.css";
 
@@ -59,6 +62,7 @@ export const CalendarCellEventModal: React.FC<IProps> = (props) => {
   const handelFixMyRecruitmentItem = (item: EventTargetDate) => {
     //todo: 開始後の修正は不可能
     // 参加者いれば修正も不可能
+    dispatch(resetRecruitmentItem());
     dispatch(setRecruitmentItem(item));
     handelShowFixModal();
   };

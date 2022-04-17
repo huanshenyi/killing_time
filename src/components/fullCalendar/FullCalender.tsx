@@ -118,11 +118,14 @@ export const FullCalender: React.FC<Myprops> = (props) => {
   return (
     <>
       <Alert />
-      <CalenderCellFixModal
-        visible={fixModalVisible}
-        handleCancel={handelHideFixModal}
-        handleOk={handelHideFixModal}
-      />
+      {fixModalVisible ? (
+        <CalenderCellFixModal
+          visible={fixModalVisible}
+          handleCancel={handelHideFixModal}
+          handleOk={handelHideFixModal}
+        />
+      ) : null}
+
       <CalendarCellEventModal
         isModalVisible={isEventModalVisible}
         eventTargetData={eventData}

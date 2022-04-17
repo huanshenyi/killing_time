@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RecruitmentType } from "@/models";
 
-interface RecruitmentItemContext {
+export interface RecruitmentItemContext {
   id: number;
   title: string;
   place: string;
@@ -15,7 +15,7 @@ interface RecruitmentItemContext {
   type: RecruitmentType;
 }
 
-const initialState: RecruitmentItemContext = {
+export const initialState: RecruitmentItemContext = {
   id: 0,
   title: "",
   place: "",
@@ -34,7 +34,17 @@ export const recruitmentItemSlice = createSlice({
   initialState,
   reducers: {
     resetRecruitmentItem(state) {
-      state = initialState;
+      state.content = initialState.content;
+      state.end = initialState.end;
+      state.fullday = initialState.fullday;
+      state.id = initialState.id;
+      state.numberLimit = initialState.numberLimit;
+      state.paid = initialState.paid;
+      state.paidContent = initialState.paidContent;
+      state.place = initialState.place;
+      state.start = initialState.start;
+      state.title = initialState.title;
+      state.type = initialState.type;
     },
     setRecruitmentItem(state, action: PayloadAction<RecruitmentItemContext>) {
       state.content = action.payload.content;
