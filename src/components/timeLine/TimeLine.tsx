@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Timeline, Space } from "antd";
-import { subDays } from "date-fns";
+import { subDays, addDays, format } from "date-fns";
 import {
   SolutionOutlined,
   ProfileOutlined,
@@ -12,6 +12,7 @@ import { PostMyRecruitmentItem } from "@/http/api/recruitment/postMyRecruitment"
 import { recruitmentColor, applicationColor, freeTimeColor } from "@/utils";
 
 import styles from "./TimeLine.module.css";
+import ja from "date-fns/locale/ja";
 
 interface IProps {
   myRecruitment: [];
@@ -78,11 +79,13 @@ export const TimeLine: React.FC<IProps> = ({ myRecruitment }) => {
       >
         <Timeline mode={"left"}>
           {myRecruitment.map((item: PostMyRecruitmentItem, index: number) => {
-            if (new Date(item.start) > subDays(new Date(), 1)) {
+            if (addDays(new Date(), 7) > new Date(item.start)) {
               return (
                 <Timeline.Item
                   key={index}
-                  label={item.start}
+                  label={format(new Date(item.start), "yyyy年M月d日(E) HH:mm", {
+                    locale: ja,
+                  })}
                   dot={typeToIcon(item.type)}
                   color={typeToColor(item.type)}
                 >
