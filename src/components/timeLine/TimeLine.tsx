@@ -79,7 +79,10 @@ export const TimeLine: React.FC<IProps> = ({ myRecruitment }) => {
       >
         <Timeline mode={"left"}>
           {myRecruitment.map((item: PostMyRecruitmentItem, index: number) => {
-            if (addDays(new Date(), 7) > new Date(item.start)) {
+            if (
+              addDays(new Date(), 7) > new Date(item.start) &&
+              new Date(item.start) > new Date()
+            ) {
               return (
                 <Timeline.Item
                   key={index}
