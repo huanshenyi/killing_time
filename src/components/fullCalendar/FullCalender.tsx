@@ -154,6 +154,9 @@ export const FullCalender: React.FC<Myprops> = (props) => {
         events={myRecruitment}
         eventClick={handleEventClick}
         displayEventEnd
+        businessHours={true}
+        editable={true}
+        eventDisplay="block"
         eventTimeFormat={{
           hour: "2-digit",
           minute: "2-digit",

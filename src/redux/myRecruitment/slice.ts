@@ -35,9 +35,9 @@ export const getMyRecruitment = createAsyncThunk(
     const { data } = await axios.get(`/myRecruitment`);
     data.filter((item: any) => {
       if (item.type === "freeTime") {
-        item["color"] = "#f0f8ff";
-        item["backgroundColor"] = "#f0f8ff";
-        item["borderColor"] = "#f0f8ff";
+        item["color"] = "#00bfff";
+        item["backgroundColor"] = "#00bfff";
+        item["borderColor"] = "#00bfff";
       } else if (item.type === "recruitment") {
         item["color"] = "#66cdaa";
         item["backgroundColor"] = "#66cdaa";
