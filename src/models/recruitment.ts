@@ -13,4 +13,4 @@ export const initialMyRecruitmentItemData: PostMyRecruitmentItem = {
   type: "recruitment",
 };
 
-export type RecruitmentType = "recruitment" | "openTime" | "application" | "";
+export type RecruitmentType = "recruitment" | "freeTime" | "application" | "";

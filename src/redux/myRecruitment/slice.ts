@@ -20,7 +20,7 @@ const thisMonth = () => {
 interface MyRecruitmentState {
   loading: boolean;
   error: string | null;
-  data: any; //応募、もしくは募集したイベントデータ
+  data: any; //応募、もしくは募集したイベントデータ、もしくは暇な時間
 }
 
 const initialState: MyRecruitmentState = {
@@ -33,9 +33,22 @@ export const getMyRecruitment = createAsyncThunk(
   "myRecruitment/getMyRecruitment",
   async (userId: number, thunkAPI) => {
     const { data } = await axios.get(`/myRecruitment`);
+    data.filter((item: any) => {
+      if (item.type === "freeTime") {
+        item["color"] = "#f0f8ff";
+        item["backgroundColor"] = "#f0f8ff";
+        item["borderColor"] = "#f0f8ff";
+      } else if (item.type === "recruitment") {
+        item["color"] = "#66cdaa";
+        item["backgroundColor"] = "#66cdaa";
+        item["borderColor"] = "#66cdaa";
+      } else if (item.type === "application") {
+        item["color"] = "#ff4500";
+        item["backgroundColor"] = "#ff4500";
+        item["borderColor"] = "#ff4500";
+      }
+    });
     return data;
-    // const {data} = await axios.get(`url/userId`);
-    // return data
   }
 );
 
