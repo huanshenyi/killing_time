@@ -1,7 +1,7 @@
 import React from "react";
 import { format } from "date-fns";
 import ja from "date-fns/locale/ja";
-import { Modal, Button, Popover, Row, Col, Statistic } from "antd";
+import { Modal, Button, Popover, Row, Col, Statistic, Tag } from "antd";
 import {
   DollarCircleOutlined,
   DeleteTwoTone,
@@ -13,6 +13,7 @@ import {
   SnippetsTwoTone,
 } from "@ant-design/icons";
 import { RecruitmentType } from "@/models";
+import { recruitmentColor, freeTimeColor, applicationColor } from "@/utils";
 
 import { useDispatch } from "react-redux";
 import {
@@ -66,14 +67,46 @@ export const CalendarCellEventModal: React.FC<IProps> = (props) => {
     dispatch(setRecruitmentItem(item));
     handelShowFixModal();
   };
+
+  const typeToString = (value: string) => {
+    let text = "";
+    switch (value) {
+      case "recruitment":
+        text = "募集";
+        break;
+      case "freeTime":
+        text = "空き時間";
+        break;
+      case "application":
+        text = "応募";
+        break;
+    }
+    return text;
+  };
+
+  const typeToColor = (value: string) => {
+    switch (value) {
+      case "recruitment":
+        return recruitmentColor;
+      case "freeTime":
+        return freeTimeColor;
+      case "application":
+        return applicationColor;
+    }
+  };
+
   return (
     <>
       <Modal
         title={
           <div>
-            <SnippetsTwoTone className={styles.statisticTitleIcon} />
-            {eventTargetData && eventTargetData.title}(
-            {eventTargetData && eventTargetData.type})
+            <Tag
+              icon={<SnippetsTwoTone className={styles.statisticTitleIcon} />}
+              color={eventTargetData && typeToColor(eventTargetData.type)}
+            >
+              {eventTargetData && typeToString(eventTargetData.type)}
+            </Tag>
+            {eventTargetData && eventTargetData.title}
           </div>
         }
         visible={isModalVisible}
