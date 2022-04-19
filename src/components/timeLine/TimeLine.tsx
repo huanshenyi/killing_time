@@ -1,10 +1,9 @@
 import React from "react";
 import { Card, Timeline, Space } from "antd";
-import { subDays, addDays, format } from "date-fns";
+import { addDays, format } from "date-fns";
 import {
   SolutionOutlined,
   ProfileOutlined,
-  UserOutlined,
   CalendarOutlined,
 } from "@ant-design/icons";
 
@@ -59,7 +58,7 @@ export const TimeLine: React.FC<IProps> = ({ myRecruitment }) => {
   return (
     <div className={styles.timeLineContent}>
       <Card
-        title="直近タイムライン"
+        title="週間タイムライン"
         extra={
           <Space align="start" size={5}>
             <SolutionOutlined
