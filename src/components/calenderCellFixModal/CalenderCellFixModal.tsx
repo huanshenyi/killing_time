@@ -8,6 +8,7 @@ import {
   Switch,
   TimePicker,
   InputNumber,
+  Select,
 } from "antd";
 import { useSelector } from "@/redux/hooks";
 import { useDispatch } from "react-redux";
@@ -30,6 +31,7 @@ export const CalenderCellFixModal: React.FC<IProps> = ({
   handleOk,
 }) => {
   const dispatch = useDispatch();
+  const { Option } = Select;
 
   const [isFullDay, setIsFullDay] = useState<boolean>(true);
   const [isPaid, setPaid] = useState<boolean>(false);
@@ -58,6 +60,10 @@ export const CalenderCellFixModal: React.FC<IProps> = ({
     dispatch(getMyRecruitment(1));
   };
 
+  const onTypeChange = (value: string) => {
+    console.log(value);
+  };
+
   const chanageFullDay = () => {
     setIsFullDay(!isFullDay);
   };
@@ -81,6 +87,15 @@ export const CalenderCellFixModal: React.FC<IProps> = ({
             end: moment(recruitmentItem.end, "HH:mm:ss"),
           }}
         >
+          <Form.Item name="type" rules={[{ required: true }]}>
+            <Select
+              placeholder="予定タイプを選びください"
+              onChange={onTypeChange}
+            >
+              <Option value="recruitment">募集</Option>
+              <Option value="freeTime">空き時間</Option>
+            </Select>
+          </Form.Item>
           <Form.Item label="" name="title">
             <Input placeholder="タイトルを入力してください" />
           </Form.Item>

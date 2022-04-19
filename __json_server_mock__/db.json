@@ -14,6 +14,7 @@
       "content": "詳細です。",
       "paidContent": "100円",
       "numberLimit": 1,
+      "type": "recruitment",
       "id": 1
     },
     {
@@ -24,6 +25,7 @@
       "content": "仕事",
       "paidContent": "",
       "numberLimit": 1,
+      "type": "recruitment",
       "id": 2
     },
     {
@@ -74,6 +76,41 @@
       "numberLimit": 1,
       "type": "recruitment",
       "id": 7
+    },
+    {
+      "title": "空き時間",
+      "place": "オンライン",
+      "fullday": false,
+      "start": "2022-04-20 00:00:00",
+      "end": "2022-04-21 23:59:59",
+      "content": "",
+      "paid": false,
+      "paidContent": "",
+      "numberLimit": 1,
+      "type": "freeTime",
+      "id": 8
+    },
+    {
+      "title": "xx",
+      "place": "xxx",
+      "fullday": true,
+      "start": "2022-04-22 00:00:00",
+      "end": "2022-04-22 23:59:59",
+      "content": "",
+      "paid": false,
+      "numberLimit": 1,
+      "type": "freeTime",
+      "id": 9
+    },
+    {
+      "type": "recruitment",
+      "title": "ye",
+      "place": "h",
+      "start": "2022-04-25 20:00:00",
+      "end": "2022-04-25 20:59:59",
+      "content": "",
+      "numberLimit": 1,
+      "id": 11
     }
   ]
 }

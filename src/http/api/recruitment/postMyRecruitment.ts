@@ -18,7 +18,7 @@ export interface PostMyRecruitmentItem {
    */
   title: string;
   place: string;
-  fullday: true;
+  fullday: boolean;
   start: string;
   end: string;
   content: string;

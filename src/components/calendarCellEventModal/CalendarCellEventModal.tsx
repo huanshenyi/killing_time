@@ -72,7 +72,8 @@ export const CalendarCellEventModal: React.FC<IProps> = (props) => {
         title={
           <div>
             <SnippetsTwoTone className={styles.statisticTitleIcon} />
-            {eventTargetData && eventTargetData.title}
+            {eventTargetData && eventTargetData.title}(
+            {eventTargetData && eventTargetData.type})
           </div>
         }
         visible={isModalVisible}

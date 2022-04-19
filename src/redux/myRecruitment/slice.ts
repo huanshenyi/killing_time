@@ -6,6 +6,7 @@ import {
   deleteMyRecruitmentApi,
   putMyRecruitmentApi,
 } from "../../http/api";
+import { recruitmentColor, freeTimeColor, applicationColor } from "@/utils";
 
 import { RecruitmentItemContext } from "@/redux/recruitmentItem/slice";
 
@@ -20,7 +21,7 @@ const thisMonth = () => {
 interface MyRecruitmentState {
   loading: boolean;
   error: string | null;
-  data: any; //応募、もしくは募集したイベントデータ
+  data: any; //応募、もしくは募集したイベントデータ、もしくは暇な時間
 }
 
 const initialState: MyRecruitmentState = {
@@ -33,9 +34,16 @@ export const getMyRecruitment = createAsyncThunk(
   "myRecruitment/getMyRecruitment",
   async (userId: number, thunkAPI) => {
     const { data } = await axios.get(`/myRecruitment`);
+    data.filter((item: any) => {
+      if (item.type === "freeTime") {
+        item["color"] = freeTimeColor;
+      } else if (item.type === "recruitment") {
+        item["color"] = recruitmentColor;
+      } else if (item.type === "application") {
+        item["color"] = applicationColor;
+      }
+    });
     return data;
-    // const {data} = await axios.get(`url/userId`);
-    // return data
   }
 );
 
