@@ -29,7 +29,7 @@ export const HomePage: React.FC = () => {
             <FullCalender myRecruitment={myRecruitment} />
             <Row style={{ backgroundColor: "white" }}>
               <Col span={12}>
-                <TimeLine />
+                <TimeLine myRecruitment={myRecruitment} />
               </Col>
               <Col span={12}>
                 <MiniBoard />
@@ -52,7 +52,7 @@ export const HomePage: React.FC = () => {
         <FullCalender myRecruitment={myRecruitment} />
         <Row style={{ backgroundColor: "white" }}>
           <Col span={12}>
-            <TimeLine />
+            <TimeLine myRecruitment={myRecruitment} />
           </Col>
           <Col span={12}>
             <MiniBoard />

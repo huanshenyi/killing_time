@@ -111,6 +111,28 @@
       "content": "",
       "numberLimit": 1,
       "id": 11
+    },
+    {
+      "type": "recruitment",
+      "title": "yeff",
+      "place": "h",
+      "start": "2022-05-25 20:00:00",
+      "end": "2022-05-25 20:59:59",
+      "content": "",
+      "numberLimit": 1,
+      "id": 12
+    },
+    {
+      "title": "cc",
+      "place": "c",
+      "fullday": true,
+      "start": "2022-04-19 00:00:00",
+      "end": "2022-04-19 23:59:59",
+      "content": "",
+      "paid": false,
+      "numberLimit": 1,
+      "type": "recruitment",
+      "id": 13
     }
   ]
 }

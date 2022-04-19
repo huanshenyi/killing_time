@@ -84,8 +84,8 @@ export const myRecruitmentSlice = createSlice({
       state.loading = true;
     },
     [getMyRecruitment.fulfilled.type]: (state, action) => {
-      state.data = action.payload;
       state.loading = false;
+      state.data = action.payload;
       state.error = null;
     },
     [getMyRecruitment.rejected.type]: (
