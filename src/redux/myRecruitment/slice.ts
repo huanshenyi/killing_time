@@ -6,6 +6,7 @@ import {
   deleteMyRecruitmentApi,
   putMyRecruitmentApi,
 } from "../../http/api";
+import { recruitmentColor, freeTimeColor, applicationColor } from "@/utils";
 
 import { RecruitmentItemContext } from "@/redux/recruitmentItem/slice";
 
@@ -35,17 +36,11 @@ export const getMyRecruitment = createAsyncThunk(
     const { data } = await axios.get(`/myRecruitment`);
     data.filter((item: any) => {
       if (item.type === "freeTime") {
-        item["color"] = "#00bfff";
-        item["backgroundColor"] = "#00bfff";
-        item["borderColor"] = "#00bfff";
+        item["color"] = freeTimeColor;
       } else if (item.type === "recruitment") {
-        item["color"] = "#66cdaa";
-        item["backgroundColor"] = "#66cdaa";
-        item["borderColor"] = "#66cdaa";
+        item["color"] = recruitmentColor;
       } else if (item.type === "application") {
-        item["color"] = "#ff4500";
-        item["backgroundColor"] = "#ff4500";
-        item["borderColor"] = "#ff4500";
+        item["color"] = applicationColor;
       }
     });
     return data;
