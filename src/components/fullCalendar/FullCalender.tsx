@@ -113,6 +113,15 @@ export const FullCalender: React.FC<Myprops> = (props) => {
 
   const handelHideFixModal = () => {
     setFixModalVisible(false);
+    dispatch(setAlertContent({ type: "info", message: "予定修正されました" }));
+    dispatch(displayAlert());
+    setTimeout(() => {
+      dispatch(hideAlert());
+    }, 5000);
+  };
+
+  const handelCancelFixModal = () => {
+    setFixModalVisible(false);
   };
 
   return (
@@ -121,7 +130,7 @@ export const FullCalender: React.FC<Myprops> = (props) => {
       {fixModalVisible ? (
         <CalenderCellFixModal
           visible={fixModalVisible}
-          handleCancel={handelHideFixModal}
+          handleCancel={handelCancelFixModal}
           handleOk={handelHideFixModal}
         />
       ) : null}
@@ -134,7 +143,7 @@ export const FullCalender: React.FC<Myprops> = (props) => {
         handelShowFixModal={handelShowFixModal}
       />
       <CalendarCellModal
-        title="イベント追加"
+        title="予定追加"
         visible={isModalVisible}
         selectDate={selectDate}
         handleCancel={handleCancel}

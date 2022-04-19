@@ -104,7 +104,7 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
         >
           <Form.Item name="type" rules={[{ required: true }]}>
             <Select
-              placeholder="イベントタイプを選びください"
+              placeholder="予定タイプを選びください"
               onChange={onTypeChange}
             >
               <Option value="recruitment">募集</Option>

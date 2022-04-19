@@ -103,25 +103,13 @@
       "id": 9
     },
     {
-      "title": "rrrr",
-      "place": "ff",
-      "fullday": false,
-      "start": "2022-04-22 05:00:00",
-      "end": "2022-04-22 07:07:00",
-      "content": "",
-      "paid": false,
-      "numberLimit": 1,
-      "type": "freeTime",
-      "id": 10
-    },
-    {
+      "type": "recruitment",
       "title": "ye",
       "place": "h",
       "start": "2022-04-25 20:00:00",
       "end": "2022-04-25 20:59:59",
       "content": "",
       "numberLimit": 1,
-      "type": "recruitment",
       "id": 11
     }
   ]
