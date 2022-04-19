@@ -7,10 +7,14 @@ import {
   Button,
   Switch,
   InputNumber,
+  Select,
 } from "antd";
 import { DateClickArg } from "@fullcalendar/interaction";
 import { useDispatch } from "react-redux";
-import { postMyRecruitment } from "../../redux/myRecruitment/slice";
+import {
+  postMyRecruitment,
+  getMyRecruitment,
+} from "../../redux/myRecruitment/slice";
 import { initialMyRecruitmentItemData } from "../../models/recruitment";
 
 import styles from "./CalendarCellModal.module.css";
@@ -25,6 +29,7 @@ interface IProps {
 
 export const CalendarCellModal: React.FC<IProps> = (props) => {
   const { title, visible, selectDate, handleOk, handleCancel } = props;
+  const { Option } = Select;
 
   const [isFullDay, setIsFullDay] = useState<boolean>(true);
   const [isPaid, setPaid] = useState<boolean>(false);
@@ -41,6 +46,10 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
 
   const randomRange = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min)) + min;
+  };
+
+  const onTypeChange = (value: string) => {
+    console.log(value);
   };
 
   const onFinish = (values: any) => {
@@ -64,9 +73,10 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
     initialMyRecruitmentItemData.paid = values.paid;
     initialMyRecruitmentItemData.paidContent = values.paidContent;
     initialMyRecruitmentItemData.numberLimit = values.numberLimit;
-    initialMyRecruitmentItemData.type = "recruitment";
+    initialMyRecruitmentItemData.type = values.type;
     dispatch(postMyRecruitment(initialMyRecruitmentItemData));
     handleOk();
+    dispatch(getMyRecruitment(1));
   };
 
   return (
@@ -89,8 +99,18 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
             content: "",
             paid: false,
             numberLimit: 1,
+            type: "recruitment",
           }}
         >
+          <Form.Item name="type" rules={[{ required: true }]}>
+            <Select
+              placeholder="イベントタイプを選びください"
+              onChange={onTypeChange}
+            >
+              <Option value="recruitment">募集</Option>
+              <Option value="freeTime">空き時間</Option>
+            </Select>
+          </Form.Item>
           <Form.Item label="" name="title">
             <Input placeholder="タイトルを入力してください" />
           </Form.Item>

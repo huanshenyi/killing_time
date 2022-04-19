@@ -134,7 +134,7 @@ export const FullCalender: React.FC<Myprops> = (props) => {
         handelShowFixModal={handelShowFixModal}
       />
       <CalendarCellModal
-        title="募集追加"
+        title="イベント追加"
         visible={isModalVisible}
         selectDate={selectDate}
         handleCancel={handleCancel}
