@@ -9,7 +9,7 @@
 }
 .loginBox {
   width: 420px;
-  height: 320px;
+  height: 370px;
   background-color: #fff;
   position: relative;
   top: 50%;
@@ -17,4 +17,23 @@
   transform: translate(-50%, -50%);
   padding: 20px;
   border-radius: 9px;
+}
+
+.close {
+  cursor: pointer;
+}
+
+.loginInput {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #888;
+  outline: none;
+  padding: 10px;
+}
+
+.loginPrivacy {
+  color: #333;
+  font-size: 14px;
 }
