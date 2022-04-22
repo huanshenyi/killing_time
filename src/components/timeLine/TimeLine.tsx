@@ -1,5 +1,5 @@
-import React from "react";
-import { Card, Timeline, Space } from "antd";
+import React, { useState } from "react";
+import { Card, Timeline, Space, Empty } from "antd";
 import { addDays, format } from "date-fns";
 import {
   SolutionOutlined,
@@ -18,6 +18,7 @@ interface IProps {
 }
 
 export const TimeLine: React.FC<IProps> = ({ myRecruitment }) => {
+  const [timelineCount, setTimelineCount] = useState<number>(0);
   if (myRecruitment == null) {
     myRecruitment = [];
   }
@@ -82,6 +83,9 @@ export const TimeLine: React.FC<IProps> = ({ myRecruitment }) => {
               addDays(new Date(), 7) > new Date(item.start) &&
               new Date(item.start) > new Date()
             ) {
+              () => {
+                setTimelineCount(1);
+              };
               return (
                 <Timeline.Item
                   key={index}
@@ -97,6 +101,9 @@ export const TimeLine: React.FC<IProps> = ({ myRecruitment }) => {
             }
           })}
         </Timeline>
+        {() => {
+          timelineCount ? <></> : <Empty description={"週間予定ありません"} />;
+        }}
       </Card>
     </div>
   );
