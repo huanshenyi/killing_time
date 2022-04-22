@@ -5,3 +5,4 @@ export * from "./timeLine";
 export * from "./miniBoard";
 export * from "./alert";
 export * from "./calenderCellFixModal";
+export * from "./login";
