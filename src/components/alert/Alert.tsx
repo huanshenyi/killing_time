@@ -16,13 +16,14 @@ export const Alert: React.FC<AlertProps> = ({}) => {
   return (
     <div>
       {visible ? (
-        <AntdAlert
-          className={styles.alert}
-          message={message}
-          description={description}
-          type={type}
-          showIcon
-        />
+        <div className={styles.alertBox}>
+          <AntdAlert
+            message={message}
+            description={description}
+            type={type}
+            showIcon
+          />
+        </div>
       ) : null}
     </div>
   );
