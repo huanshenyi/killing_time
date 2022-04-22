@@ -9,9 +9,9 @@ import { useDispatch } from "react-redux";
 import styles from "./HomePage.module.css";
 
 export const HomePage: React.FC = () => {
+  const myRecruitment = useSelector((state) => state.myRecruitment.data);
   const loading = useSelector((state) => state.myRecruitment.loading);
   const error = useSelector((state) => state.myRecruitment.error);
-  const myRecruitment = useSelector((state) => state.myRecruitment.data);
 
   const dispatch = useDispatch();
 
@@ -25,17 +25,7 @@ export const HomePage: React.FC = () => {
       <>
         <Header />
         <Spin size="large">
-          <div className={styles["page-content"]}>
-            <FullCalender myRecruitment={myRecruitment} />
-            <Row style={{ backgroundColor: "white" }}>
-              <Col span={12}>
-                <TimeLine myRecruitment={myRecruitment} />
-              </Col>
-              <Col span={12}>
-                <MiniBoard />
-              </Col>
-            </Row>
-          </div>
+          <div className={styles["page-content"]}></div>
         </Spin>
       </>
     );
