@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { Row, Col, Spin } from "antd";
-
-import { Header, FullCalender, TimeLine, MiniBoard } from "../../components";
-import { getMyRecruitment } from "../../redux/myRecruitment/slice";
-import { useSelector } from "../../redux/hooks";
 import { useDispatch } from "react-redux";
+
+import { Header, FullCalender, TimeLine, MiniBoard } from "@/components";
+import { getMyRecruitment } from "@/redux/myRecruitment/slice";
+import { useSelector } from "@/redux/hooks";
+import { MainLayout } from "@/layouts";
 
 import styles from "./HomePage.module.css";
 
@@ -23,10 +24,11 @@ export const HomePage: React.FC = () => {
   if (loading) {
     return (
       <>
-        <Header />
-        <Spin size="large">
-          <div className={styles["page-content"]}></div>
-        </Spin>
+        <MainLayout>
+          <Spin size="large">
+            <div className={styles["page-content"]}></div>
+          </Spin>
+        </MainLayout>
       </>
     );
   }
@@ -36,19 +38,16 @@ export const HomePage: React.FC = () => {
   }
 
   return (
-    <>
-      <Header />
-      <div className={styles["page-content"]}>
-        <FullCalender myRecruitment={myRecruitment} />
-        <Row style={{ backgroundColor: "white" }}>
-          <Col span={12}>
-            <TimeLine myRecruitment={myRecruitment} />
-          </Col>
-          <Col span={12}>
-            <MiniBoard />
-          </Col>
-        </Row>
-      </div>
-    </>
+    <MainLayout>
+      <FullCalender myRecruitment={myRecruitment} />
+      <Row style={{ backgroundColor: "white" }}>
+        <Col span={12}>
+          <TimeLine myRecruitment={myRecruitment} />
+        </Col>
+        <Col span={12}>
+          <MiniBoard />
+        </Col>
+      </Row>
+    </MainLayout>
   );
 };
