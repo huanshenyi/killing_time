@@ -1,6 +1,7 @@
 import styles from "./Login.module.css";
-import { Row, Col, Button } from "antd";
+import { Row, Col, Button, message, Form, Input } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
+import { ChangeEvent, useState } from "react";
 
 interface IProps {
   isShow: boolean;
@@ -11,6 +12,16 @@ export const Login: React.FC<IProps> = ({ isShow, onClose }) => {
   const handelClose = () => {
     onClose && onClose();
   };
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const onFinish = (v: any) => {
+    console.log(v);
+  };
+  const onFinishFailed = () => {};
+
   return isShow ? (
     <div className={styles.loginArea}>
       <div className={styles.loginBox}>
@@ -26,24 +37,46 @@ export const Login: React.FC<IProps> = ({ isShow, onClose }) => {
             <div className={styles.loginIcon}>iconここに置く</div>
           </Col>
         </Row>
-        <Row style={{ lineHeight: "31px" }}>
-          <Col span={24}>
-            <input className={styles.loginInput} placeholder="email" />
-          </Col>
-        </Row>
-        <Row style={{ lineHeight: "31px" }}>
-          <Col span={24}>
-            <input className={styles.loginInput} placeholder="password" />
-          </Col>
-        </Row>
-        <Row style={{ lineHeight: "32px" }}>
-          <Col span={24}>
-            <Button type="primary" size="large">
-              Login
+        <Form
+          name="basic"
+          initialValues={loginForm}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+        >
+          <Form.Item
+            name="email"
+            rules={[{ required: true, message: "Please input your email!" }]}
+          >
+            <Input
+              placeholder="Emailを入力してください."
+              style={{ borderRadius: 5 }}
+            />
+          </Form.Item>
+
+          <Form.Item
+            tooltip="Password"
+            name="password"
+            rules={[{ required: true, message: "Please input your password!" }]}
+          >
+            <Input.Password
+              placeholder="Passwordを入力してください."
+              style={{ borderRadius: 5 }}
+            />
+          </Form.Item>
+
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              shape="round"
+              style={{ width: 110 }}
+            >
+              ログイン
             </Button>
-          </Col>
-        </Row>
-        <Row>
+          </Form.Item>
+        </Form>
+        <Row style={{ lineHeight: "32px" }}>
           <Col>
             <Button>google login</Button>
           </Col>
@@ -51,9 +84,9 @@ export const Login: React.FC<IProps> = ({ isShow, onClose }) => {
             <Button>github login</Button>
           </Col>
         </Row>
-        <Row style={{ lineHeight: "32px" }}>
+        <Row style={{ lineHeight: "30px" }}>
           <Col>
-            <div className={styles.loginPrivacy}>xxxxxxxxx</div>
+            <div className={styles.loginPrivacy}>プライバシ何か</div>
           </Col>
         </Row>
       </div>
