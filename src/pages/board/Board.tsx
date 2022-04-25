@@ -1,11 +1,12 @@
 import React from "react";
-import { Header } from "@/components";
+import { MainLayout } from "@/layouts";
 
 export const Board: React.FC = () => {
   return (
     <>
-      <Header />
-      <div>board</div>
+      <MainLayout>
+        <div>board</div>
+      </MainLayout>
     </>
   );
 };
