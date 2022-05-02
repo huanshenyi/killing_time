@@ -1,7 +1,11 @@
 import styles from "./Login.module.css";
 import { Row, Col, Button, message, Form, Input } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
+import { signIn } from "@/redux/user/slice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "@/redux/hooks";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   isShow: boolean;
@@ -9,6 +13,12 @@ interface IProps {
 }
 
 export const Login: React.FC<IProps> = ({ isShow, onClose }) => {
+  const loading = useSelector((state) => state.user.loading);
+  const jwt = useSelector((state) => state.user.token);
+  const error = useSelector((state) => state.user.error);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handelClose = () => {
     onClose && onClose();
   };
@@ -17,8 +27,8 @@ export const Login: React.FC<IProps> = ({ isShow, onClose }) => {
     password: "",
   });
 
-  const onFinish = (v: any) => {
-    console.log(v);
+  const onFinish = (v: { email: string; password: string }) => {
+    dispatch(signIn({ email: v.email, password: v.password }));
   };
   const onFinishFailed = () => {};
 
