@@ -7,5 +7,5 @@ export interface LoginParamaters {
 
 export const loginApi = (value: LoginParamaters) => {
   const loginBody: LoginParamaters = value;
-  return axios.post("/login", loginBody);
+  return axios.post("/login", { ...loginBody });
 };

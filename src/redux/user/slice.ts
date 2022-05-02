@@ -21,7 +21,7 @@ export const signIn = createAsyncThunk(
       email: paramaters.email,
       password: paramaters.password,
     });
-    return data.token;
+    return data.data.token;
   }
 );
 
