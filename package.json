@@ -7,7 +7,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "husky install",
-    "json-server": "json-server __json_server_mock__/db.json --watch --port 3002"
+    "json-server": "json-server __json_server_mock__/db.json --watch --port 3002 --middlewares ./__json_server_mock__/middleware.js"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
@@ -20,11 +20,13 @@
     "axios": "^0.26.1",
     "date-fns": "^2.28.0",
     "json-server": "^0.17.0",
+    "jwt-decode": "^3.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.2",
-    "redux": "^4.1.2"
+    "redux": "^4.1.2",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.33",
