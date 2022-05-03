@@ -5,7 +5,6 @@ import { useState } from "react";
 import { signIn } from "@/redux/user/slice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "@/redux/hooks";
-import { useNavigate } from "react-router-dom";
 
 interface IProps {
   isShow: boolean;
@@ -18,7 +17,6 @@ export const Login: React.FC<IProps> = ({ isShow, onClose }) => {
   const error = useSelector((state) => state.user.error);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const handelClose = () => {
     onClose && onClose();
   };
@@ -29,6 +27,7 @@ export const Login: React.FC<IProps> = ({ isShow, onClose }) => {
 
   const onFinish = (v: { email: string; password: string }) => {
     dispatch(signIn({ email: v.email, password: v.password }));
+    handelClose();
   };
   const onFinishFailed = () => {};
 
@@ -81,6 +80,7 @@ export const Login: React.FC<IProps> = ({ isShow, onClose }) => {
               htmlType="submit"
               shape="round"
               style={{ width: 110 }}
+              loading={loading}
             >
               ログイン
             </Button>
