@@ -31,7 +31,9 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // const store = createStore(rootReducer);
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) => [...getDefaultMiddleware()], //カスタムミドルウェアも追加可能
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware({ serializableCheck: false }),
+  ], //カスタムミドルウェアも追加可能
   devTools: true,
 });
 
