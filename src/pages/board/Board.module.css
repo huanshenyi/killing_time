@@ -1,0 +1,10 @@
+.board-list-container {
+  padding: 20px;
+  margin-top: 20px;
+  background: white;
+}
+
+.board-card-container {
+  margin-top: 20px;
+  margin-left: 50px;
+}
