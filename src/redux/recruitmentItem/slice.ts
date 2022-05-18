@@ -13,6 +13,7 @@ export interface RecruitmentItemContext {
   paidContent: string;
   numberLimit: number;
   type: RecruitmentType;
+  userId: number;
 }
 
 export const initialState: RecruitmentItemContext = {
@@ -27,6 +28,7 @@ export const initialState: RecruitmentItemContext = {
   paidContent: "",
   numberLimit: 1,
   type: "recruitment",
+  userId: 0,
 };
 
 export const recruitmentItemSlice = createSlice({
@@ -45,6 +47,7 @@ export const recruitmentItemSlice = createSlice({
       state.start = initialState.start;
       state.title = initialState.title;
       state.type = initialState.type;
+      state.userId = initialState.userId;
     },
     setRecruitmentItem(state, action: PayloadAction<RecruitmentItemContext>) {
       state.content = action.payload.content;
@@ -58,6 +61,7 @@ export const recruitmentItemSlice = createSlice({
       state.start = action.payload.start;
       state.title = action.payload.title;
       state.type = action.payload.type;
+      state.userId = action.payload.userId;
     },
   },
 });

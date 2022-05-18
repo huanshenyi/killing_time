@@ -33,7 +33,7 @@ const initialState: MyRecruitmentState = {
 export const getMyRecruitment = createAsyncThunk(
   "myRecruitment/getMyRecruitment",
   async (userId: number, thunkAPI) => {
-    const { data } = await axios.get(`/myRecruitment`);
+    const { data } = await axios.get(`/myRecruitment?userId=${userId}`);
     data.filter((item: any) => {
       if (item.type === "freeTime") {
         item["color"] = freeTimeColor;

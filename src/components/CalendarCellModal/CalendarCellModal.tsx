@@ -25,10 +25,11 @@ interface IProps {
   selectDate?: DateClickArg | undefined;
   handleCancel: () => void;
   handleOk: () => void;
+  user_id: number;
 }
 
 export const CalendarCellModal: React.FC<IProps> = (props) => {
-  const { title, visible, selectDate, handleOk, handleCancel } = props;
+  const { title, visible, selectDate, handleOk, handleCancel, user_id } = props;
   const { Option } = Select;
 
   const [isFullDay, setIsFullDay] = useState<boolean>(true);
@@ -74,9 +75,10 @@ export const CalendarCellModal: React.FC<IProps> = (props) => {
     initialMyRecruitmentItemData.paidContent = values.paidContent;
     initialMyRecruitmentItemData.numberLimit = values.numberLimit;
     initialMyRecruitmentItemData.type = values.type;
+    initialMyRecruitmentItemData.userId = user_id;
     dispatch(postMyRecruitment(initialMyRecruitmentItemData));
     handleOk();
-    dispatch(getMyRecruitment(1));
+    dispatch(getMyRecruitment(user_id));
   };
 
   return (

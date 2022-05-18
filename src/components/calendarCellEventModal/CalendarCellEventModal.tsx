@@ -35,6 +35,7 @@ export interface EventTargetDate {
   paidContent: string;
   numberLimit: number;
   type: RecruitmentType;
+  userId: number;
 }
 
 interface IProps {
@@ -212,8 +213,8 @@ export const CalendarCellEventModal: React.FC<IProps> = (props) => {
                 }
                 value={
                   eventTargetData.paidContent
-                    ? "無償"
-                    : eventTargetData.paidContent
+                    ? eventTargetData.paidContent
+                    : "無償"
                 }
                 valueStyle={{ fontSize: "20px" }}
               />
