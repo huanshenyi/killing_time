@@ -104,16 +104,6 @@
       "id": 9
     },
     {
-      "type": "recruitment",
-      "title": "yeff",
-      "place": "h",
-      "start": "2022-05-25 20:00:00",
-      "end": "2022-05-25 20:59:59",
-      "content": "",
-      "numberLimit": 1,
-      "id": 12
-    },
-    {
       "title": "cc",
       "place": "c",
       "fullday": true,
@@ -138,16 +128,66 @@
       "id": 14
     },
     {
-      "title": "仕事",
-      "place": "",
-      "fullday": true,
-      "start": "2022-04-25 00:00:00",
-      "end": "2022-04-25 23:59:59",
-      "content": "",
-      "paid": false,
-      "numberLimit": 1,
       "type": "recruitment",
-      "id": 15
+      "title": "19test1212",
+      "place": "xx",
+      "start": "2022-05-19 20:00:00",
+      "end": "2022-05-19 20:59:59",
+      "content": "",
+      "numberLimit": 1,
+      "id": 15,
+      "userId": 1
+    },
+    {
+      "type": "recruitment",
+      "title": "sss11",
+      "place": "s",
+      "start": "2022-05-20 20:00:00",
+      "end": "2022-05-20 20:59:59",
+      "content": "",
+      "paidContent": "100円",
+      "numberLimit": 1,
+      "id": 16,
+      "userId": 1,
+      "paid": true
+    },
+    {
+      "type": "freeTime",
+      "title": "xxx1",
+      "place": "xx",
+      "start": "2022-05-27 20:00:00",
+      "end": "2022-05-27 20:59:59",
+      "content": "",
+      "numberLimit": 1,
+      "id": 17,
+      "userId": 1,
+      "paid": false
+    },
+    {
+      "type": "recruitment",
+      "title": "www12",
+      "place": "w",
+      "start": "2022-05-26 20:00:00",
+      "end": "2022-05-26 20:59:59",
+      "content": "",
+      "paidContent": "ジュース一本",
+      "numberLimit": 1,
+      "id": 18,
+      "userId": 1,
+      "paid": true
+    },
+    {
+      "type": "recruitment",
+      "title": "dd2",
+      "place": "d",
+      "start": "2022-05-19 20:00:00",
+      "end": "2022-05-19 20:59:59",
+      "content": "",
+      "paidContent": "200円",
+      "numberLimit": 1,
+      "id": 19,
+      "userId": 2,
+      "paid": true
     }
   ]
 }

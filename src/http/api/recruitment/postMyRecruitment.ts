@@ -15,6 +15,7 @@ export interface PostMyRecruitmentItem {
    * @param paidContent - 奨励内容
    * @param numberLimit - 制限人数
    * @param type        - 募集か応募か空き時間か
+   * @param userId      - 所属ユーザーID
    */
   title: string;
   place: string;
@@ -26,6 +27,7 @@ export interface PostMyRecruitmentItem {
   paidContent: string;
   numberLimit: number;
   type: RecruitmentType;
+  userId: number;
 }
 
 export const postMyRecruitmentApi = (value: PostMyRecruitmentItem) => {

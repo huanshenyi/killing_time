@@ -23,12 +23,14 @@ interface IProps {
   visible: boolean;
   handleCancel: () => void;
   handleOk: () => void;
+  userId: number;
 }
 
 export const CalenderCellFixModal: React.FC<IProps> = ({
   visible,
   handleCancel,
   handleOk,
+  userId,
 }) => {
   const dispatch = useDispatch();
   const { Option } = Select;
@@ -41,6 +43,7 @@ export const CalenderCellFixModal: React.FC<IProps> = ({
 
   useEffect(() => {
     setIsFullDay(recruitmentItem.fullday);
+    setPaid(recruitmentItem.paid);
   }, [recruitmentItem]);
 
   const onSubmit = (value: RecruitmentItemContext) => {
@@ -48,6 +51,8 @@ export const CalenderCellFixModal: React.FC<IProps> = ({
       putMyRecruitment({
         ...value,
         id: recruitmentItem.id,
+        userId: userId,
+        paid: recruitmentItem.paid,
         start:
           recruitmentItem.start.substring(0, 11) +
           format(new Date(value.start), "HH:mm:ss"),
@@ -57,7 +62,7 @@ export const CalenderCellFixModal: React.FC<IProps> = ({
       })
     );
     handleOk();
-    dispatch(getMyRecruitment(1));
+    dispatch(getMyRecruitment(userId));
   };
 
   const onTypeChange = (value: string) => {
@@ -131,7 +136,10 @@ export const CalenderCellFixModal: React.FC<IProps> = ({
             />
           </Form.Item>
           <Form.Item label="有償">
-            <Switch onChange={chanagePaid} />
+            <Switch
+              onChange={chanagePaid}
+              defaultChecked={recruitmentItem.paid}
+            />
           </Form.Item>
           <Form.Item name="paidContent">
             <Input disabled={!isPaid} placeholder="報酬内容を入力ください" />

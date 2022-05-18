@@ -51,6 +51,9 @@ export const Header: React.FC = () => {
     dispatch(userSlice.actions.logOut());
     navigate("/");
   };
+  const handelToHome = () => {
+    navigate("/home");
+  };
   return (
     <div className={styles["app-header"]}>
       <Layout.Header className={styles.header}>
@@ -66,9 +69,14 @@ export const Header: React.FC = () => {
             placement="bottomRight"
             overlay={
               <Menu style={{ width: 200 }}>
-                <Menu.Item>{userData?.username}</Menu.Item>
+                <Menu.Item key={"username"}>{userData?.username}</Menu.Item>
                 <Menu.Divider />
-                <Menu.Item onClick={handelSignOut}>signOut</Menu.Item>
+                <Menu.Item onClick={handelToHome} key={"myPage"}>
+                  myPage
+                </Menu.Item>
+                <Menu.Item onClick={handelSignOut} key={"signOut"}>
+                  signOut
+                </Menu.Item>
               </Menu>
             }
           >

@@ -26,11 +26,12 @@ import {
 
 interface Myprops {
   myRecruitment: [];
+  user_id: number;
 }
 
 export const FullCalender: React.FC<Myprops> = (props) => {
   const dispatch = useDispatch();
-  const { myRecruitment } = props;
+  const { myRecruitment, user_id } = props;
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [isEventModalVisible, setIsEventModalVisible] =
     useState<boolean>(false);
@@ -46,6 +47,7 @@ export const FullCalender: React.FC<Myprops> = (props) => {
     paidContent: "",
     numberLimit: 1,
     type: "recruitment",
+    userId: user_id,
   });
   const [selectDate, setSelectDate] = useState<DateClickArg | undefined>();
   const [fixModalVisible, setFixModalVisible] = useState<boolean>(false);
@@ -87,6 +89,7 @@ export const FullCalender: React.FC<Myprops> = (props) => {
       paidContent: eventInfo.event.extendedProps.paidContent,
       numberLimit: eventInfo.event.extendedProps.numberLimit,
       type: eventInfo.event.extendedProps.type,
+      userId: user_id,
     });
   };
 
@@ -97,7 +100,7 @@ export const FullCalender: React.FC<Myprops> = (props) => {
   // 予定の削除
   const handelEventDeleteRecruitment = (recruitmentId: number) => {
     dispatch(deleteMyRecruitment(recruitmentId));
-    dispatch(getMyRecruitment(1));
+    dispatch(getMyRecruitment(user_id));
     dispatch(setAlertContent({ type: "info", message: "予定削除されました" }));
     dispatch(displayAlert());
     setTimeout(() => {
@@ -132,22 +135,25 @@ export const FullCalender: React.FC<Myprops> = (props) => {
           visible={fixModalVisible}
           handleCancel={handelCancelFixModal}
           handleOk={handelHideFixModal}
+          userId={user_id}
         />
       ) : null}
-
-      <CalendarCellEventModal
-        isModalVisible={isEventModalVisible}
-        eventTargetData={eventData}
-        setIsModalVisible={handelEventModelCandel}
-        handelEventDeleteRecruitment={handelEventDeleteRecruitment}
-        handelShowFixModal={handelShowFixModal}
-      />
+      {eventData.id ? (
+        <CalendarCellEventModal
+          isModalVisible={isEventModalVisible}
+          eventTargetData={eventData}
+          setIsModalVisible={handelEventModelCandel}
+          handelEventDeleteRecruitment={handelEventDeleteRecruitment}
+          handelShowFixModal={handelShowFixModal}
+        />
+      ) : null}
       <CalendarCellModal
         title="予定追加"
         visible={isModalVisible}
         selectDate={selectDate}
         handleCancel={handleCancel}
         handleOk={handleOk}
+        user_id={user_id}
       />
       <FullCalendar
         initialView="dayGridMonth"
