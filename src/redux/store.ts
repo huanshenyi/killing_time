@@ -9,6 +9,7 @@ import { myRecruitmentSlice } from "./myRecruitment/slice";
 import { alertControlSlice } from "./alertControl/slice";
 import { recruitmentItemSlice } from "./recruitmentItem/slice";
 import { userSlice } from "./user/slice";
+import { recruitmentSlice } from "./recruitment/slice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   alertControl: alertControlSlice.reducer,
   recruitmentItem: recruitmentItemSlice.reducer,
   user: userSlice.reducer,
+  recruitment: recruitmentSlice.reducer,
 });
 
 // データ永久化処理

@@ -1,5 +1,8 @@
-import { axios } from "../../request";
+import { axios } from "@/http/request";
 
-export const getMyRecruitmentListApi = () => {
+export const getMyRecruitmentListApi = (type: string | null) => {
+  if (type) {
+    return axios.get(`/myRecruitment?type=${type}`);
+  }
   return axios.get("/myRecruitment");
 };
