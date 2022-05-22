@@ -188,6 +188,33 @@
       "id": 19,
       "userId": 2,
       "paid": true
+    },
+    {
+      "title": "23日の募集",
+      "place": "東京歌舞伎町とーよこ",
+      "fullday": true,
+      "start": "2022-05-23 00:00:00",
+      "end": "2022-05-23 23:59:59",
+      "content": "適当なにか,適当なにか,適当なにか適当なにか",
+      "paid": true,
+      "paidContent": "1000円",
+      "numberLimit": 3,
+      "type": "recruitment",
+      "userId": 1,
+      "id": 20
+    },
+    {
+      "title": "xxxxxxxxxx",
+      "place": "yy",
+      "fullday": true,
+      "start": "2022-05-24 00:00:00",
+      "end": "2022-05-24 23:59:59",
+      "content": "",
+      "paid": false,
+      "numberLimit": 1,
+      "type": "recruitment",
+      "userId": 1,
+      "id": 21
     }
   ]
 }

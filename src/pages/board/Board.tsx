@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MainLayout } from "@/layouts";
 import { Row, Col, Affix, Spin } from "antd";
 import { useDispatch } from "react-redux";
@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { RecruitmentAndFreeTimeList, FilterArea, SideBox } from "@/components";
 import { getRecruitment } from "@/redux/recruitment/slice";
 import { useSelector } from "@/redux/hooks";
+import { RecruitmentType } from "@/models";
 
 import styles from "./Board.module.css";
 
@@ -17,6 +18,11 @@ export const Board: React.FC = () => {
   useEffect(() => {
     dispatch(getRecruitment(null));
   }, []);
+
+  const [showType, setShowType] = useState<RecruitmentType>("recruitment");
+  const handelChangeShowType = (type: RecruitmentType) => {
+    setShowType(type);
+  };
 
   if (loading) {
     return (
@@ -41,9 +47,15 @@ export const Board: React.FC = () => {
           <Col span={16}>
             <div className={styles["board-list-container"]}>
               {/*絞り込み用エリア*/}
-              <FilterArea />
+              <FilterArea
+                showType={showType}
+                handelChangeShowType={handelChangeShowType}
+              />
               {/*募集と空き時間リスト*/}
-              <RecruitmentAndFreeTimeList dataList={recruitmentList} />
+              <RecruitmentAndFreeTimeList
+                dataList={recruitmentList}
+                showType={showType}
+              />
             </div>
           </Col>
           <Col span={8}>

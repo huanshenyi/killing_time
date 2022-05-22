@@ -11,6 +11,7 @@ export const initialMyRecruitmentItemData: PostMyRecruitmentItem = {
   paidContent: "",
   numberLimit: 1,
   type: "recruitment",
+  userId: 0,
 };
 
 export type RecruitmentType = "recruitment" | "freeTime" | "application" | "";
