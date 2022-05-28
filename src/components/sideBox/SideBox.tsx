@@ -1,15 +1,30 @@
 import { Row, Col } from "antd";
 import { HotTags } from "./HotTags";
 import { HotUsers } from "./HotUsers";
+
 import styles from "./SideBox.module.css";
 
-export const SideBox: React.FC = () => {
+interface Iprops {
+  tagLoading: boolean;
+  tagError: string | null;
+  tagData: any;
+}
+
+export const SideBox: React.FC<Iprops> = ({
+  tagData,
+  tagError,
+  tagLoading,
+}) => {
   return (
     <div className={styles["sideBox-list-container"]}>
       <Row>
         <Col span={24}>
           <div className={styles["sideBox-card-container"]}>
-            <HotTags tags={[]} />
+            <HotTags
+              tags={tagData}
+              tagError={tagError}
+              tagLoading={tagLoading}
+            />
           </div>
         </Col>
       </Row>

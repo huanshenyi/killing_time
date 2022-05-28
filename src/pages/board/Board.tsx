@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 
 import { RecruitmentAndFreeTimeList, FilterArea, SideBox } from "@/components";
 import { getRecruitment } from "@/redux/recruitment/slice";
+import { getTag } from "@/redux/tag/slice";
 import { useSelector } from "@/redux/hooks";
 import { RecruitmentType } from "@/models";
 
@@ -15,8 +16,14 @@ export const Board: React.FC = () => {
   const loading = useSelector((state) => state.recruitment.loading);
   const error = useSelector((state) => state.recruitment.error);
   const recruitmentList = useSelector((state) => state.recruitment.data);
+
+  const tagLoading = useSelector((state) => state.tag.loading);
+  const tagError = useSelector((state) => state.tag.error);
+  const tagList = useSelector((state) => state.tag.data);
+
   useEffect(() => {
     dispatch(getRecruitment(null));
+    dispatch(getTag({ status: 1, page: 1, limt: 10 }));
   }, []);
 
   const [showType, setShowType] = useState<RecruitmentType>("recruitment");
@@ -62,7 +69,13 @@ export const Board: React.FC = () => {
             <Affix>
               <div className={styles["board-card-container"]}>
                 {/*広告、Hotなどエリア*/}
-                <SideBox />
+                {tagLoading ? null : (
+                  <SideBox
+                    tagError={tagError}
+                    tagData={tagList}
+                    tagLoading={tagLoading}
+                  />
+                )}
               </div>
             </Affix>
           </Col>
