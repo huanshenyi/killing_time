@@ -7,7 +7,7 @@ import {
   Outlet,
 } from "react-router-dom";
 
-import { Board, HomePage } from "./pages";
+import { Board, HomePage, TagsPage } from "./pages";
 import { useSelector } from "@/redux/hooks";
 
 import styles from "./App.module.css";
@@ -27,6 +27,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Board />} />
+          <Route path="/tags/:tagId" element={<TagsPage />}></Route>
           <Route path="/" element={<PrivateRoute isAuthenticated={jwt} />}>
             <Route path="/home" element={<HomePage />} />
           </Route>
